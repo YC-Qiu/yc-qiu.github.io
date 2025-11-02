@@ -10,10 +10,10 @@ import './index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const sections = [
-  { title: 'Education', image: 'src/assets/images/education.png', path: '/education' },
-  { title: 'Projects', image: 'src/assets/images/projects.png', path: '/projects' },
-  { title: 'Work', image: 'src/assets/images/work.png', path: '/work' },
-  { title: 'Hobbies', image: 'src/assets/images/hobby.png', path: '/hobbies' },
+  { title: 'Education', image: '/assets/images/education.png', path: '/education' },
+  { title: 'Projects', image: '/assets/images/projects.png', path: '/projects' },
+  { title: 'Work', image: '/assets/images/work.png', path: '/work' },
+  { title: 'Hobbies', image: '/assets/images/hobby.png', path: '/hobbies' },
 ];
 
 const socialLinks = [
@@ -96,7 +96,7 @@ function Home() {
     <motion.div
       className="h-screen w-screen text-white px-10 bg-cover bg-center bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('./src/assets/images/index_bg.png')",
+        backgroundImage: "url('/assets/images/index_bg.png')",
         backgroundColor: '#000',
       }}
       initial={{ opacity: 0, y: 30 }}

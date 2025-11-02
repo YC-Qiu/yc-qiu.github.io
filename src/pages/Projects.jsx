@@ -3,20 +3,19 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const projectSections = [
-    { key: 'unity', title: 'Unity & Gameplay Projects' },
-    { key: 'vr_ar', title: 'VR / AR Experiences' },
+    { key: 'featured', title: 'Featured Projects' },
+    { key: 'coursework', title: 'Coursework Projects' },
 ];
 
 const projects = [
     {
-        category: 'unity',
-        order: 1,
+        category: 'coursework',
+        order: 3,
         title: 'The Legend of Zelda – Unity Remastered',
         location: 'University of Michigan, Ann Arbor, MI',
         time: '2023.01 – 2023.02',
         tech: 'Unity, C#',
         team: 'Co-op with Varun Rajesh',
-        imageAlt: 'Unity remaster of the first Legend of Zelda dungeon',
         description: [
             'Recreated the first dungeon of the 1986 classic with Unity, faithfully restoring the original mechanics and polishing a custom level.',
         ],
@@ -30,16 +29,16 @@ const projects = [
             { label: 'MacOS Build', url: 'https://drive.google.com/file/d/1PG5Vv_tzdm7MxvarMfim4sAiYHWyaM3o/view?usp=share_link' },
             { label: 'Play Online', url: 'https://yc-qiu.itch.io/zelda-dungeon-punch-man' },
         ],
+        images: [],
     },
     {
-        category: 'vr_ar',
+        category: 'coursework',
         order: 2,
         title: 'Computer Lab Simulator – VR Experience',
         location: 'University of Michigan, Ann Arbor, MI',
         time: '2023.01 – 2023.02',
         tech: 'Unreal Engine, Blueprint',
         team: 'Co-op with Mehar Chhatwal',
-        imageAlt: 'VR computer lab simulator environment',
         description: [
             'Built a VR simulator of the Bob and Betty Beyster computer lab with interactive NPCs and environmental affordances.',
         ],
@@ -51,17 +50,16 @@ const projects = [
         links: [
             { label: 'Watch on YouTube', url: 'https://youtu.be/owv9_xFt0nk' },
         ],
+        images: [],
     },
     {
-        category: 'unity',
-        order: 3,
+        category: 'featured',
+        order: 1,
         title: 'Checkmate',
         location: 'University of Michigan, Ann Arbor, MI',
         time: '2023.02 (two-week sprint)',
         tech: 'Unity, C#',
         team: 'Individual project',
-        image: '/projects/checkmate.png',
-        imageAlt: 'Checkmate roguelike strategy game screenshot',
         description: [
             'A roguelike strategy game built around chess spirits with evolving mechanics and tutorialized onboarding.',
         ],
@@ -75,16 +73,18 @@ const projects = [
             { label: 'MacOS Build', url: 'https://drive.google.com/file/d/16jRg5vEJ-HGKoBg1l16-PMF16YBl-q23/view?usp=sharing' },
             { label: 'Play Online', url: 'https://yc-qiu.itch.io/checkmate' },
         ],
+        images: [
+            { src: '/assets/projects/checkmate.png', alt: 'Checkmate roguelike strategy game screenshot' },
+        ],
     },
     {
-        category: 'vr_ar',
-        order: 4,
+        category: 'coursework',
+        order: 1,
         title: 'Ann Arbor Go! – AR Game',
         location: 'University of Michigan, Ann Arbor, MI',
         time: '2023.02 – 2023.03',
         tech: 'Unity AR, C#',
         team: 'Co-op with Mehar Chhatwal',
-        imageAlt: 'Ann Arbor Go augmented reality gameplay',
         description: [
             'Designed an AR exploration game inspired by Pokémon Go where players plant trees, battle squirrels, and unlock rewards across Ann Arbor.',
         ],
@@ -96,17 +96,16 @@ const projects = [
         links: [
             { label: 'Watch on YouTube', url: 'https://www.youtube.com/watch?v=I98d0JSJ3eU' },
         ],
+        images: [],
     },
     {
-        category: 'unity',
-        order: 5,
+        category: 'featured',
+        order: 2,
         title: 'Cosmic Flux Frenzy',
         location: 'University of Michigan, Ann Arbor, MI',
         time: '2023.02 – 2023.04',
         tech: 'Unity, C#',
         team: 'Team: Jeremy Angelo Damacino Abapo, Bilal Al-Jaibaji, Tianze You',
-        image: '/projects/cosmic-flux.png',
-        imageAlt: 'Cosmic Flux Frenzy gameplay screenshot',
         description: [
             'Action-adventure prototype featuring a magnetic weapon system that lets players attract or repel foes throughout a space-faring journey.',
         ],
@@ -118,17 +117,18 @@ const projects = [
         links: [
             { label: 'Watch the Trailer', url: 'https://www.youtube.com/watch?v=cowJNnLBkbo' },
         ],
+        images: [
+            { src: '/assets/projects/cosmic-flux.png', alt: 'Cosmic Flux Frenzy gameplay screenshot' },
+        ],
     },
     {
-        category: 'vr_ar',
-        order: 6,
+        category: 'featured',
+        order: 3,
         title: 'VR Restaurant Simulator',
         location: 'University of Michigan, Ann Arbor, MI',
         time: '2023.02 – 2023.04',
         tech: 'Unreal Engine 5',
         team: 'Team: Hongxiao Zheng, Yi He, Ruiying He, Mehar Chhatwal',
-        image: '/projects/restaurant-simulator.png',
-        imageAlt: 'VR restaurant simulator environment',
         description: [
             'A VR farming and cooking simulator that guides players from planting to selling, featuring rich interactions and cozy aesthetics.',
         ],
@@ -142,17 +142,18 @@ const projects = [
             { label: 'Watch the Trailer', url: 'https://www.youtube.com/watch?v=-vm1rLNXGl0' },
             { label: 'Product Website', url: 'https://p3-devlog.webflow.io/' },
         ],
+        images: [
+            { src: '/assets/projects/restaurant-simulator.png', alt: 'VR restaurant simulator environment' },
+        ],
     },
     {
-        category: 'unity',
-        order: 7,
+        category: 'featured',
+        order: 4,
         title: "Don't Flock Up", 
         location: 'University of Michigan, Ann Arbor, MI',
         time: '2024.12',
         tech: 'Unity',
         team: 'Game jam team: Alexander, Dallas, Tristan, Justin',
-        image: '/projects/dont-flock-up.png',
-        imageAlt: "Don't Flock Up cooperative game screenshot",
         description: [
             'A cooperative “Counterproductive” themed game jam entry that won 3rd place at U of M’s Turkey Game Jam.',
         ],
@@ -161,6 +162,10 @@ const projects = [
         ],
         links: [
             { label: 'Windows Build', url: 'https://drive.google.com/file/d/1wa_LHYLO8CnsMDPuFeA1HMNHkBvqM5SH/view?usp=sharing' },
+        ],
+        images: [
+            { src: '/assets/projects/dont-flock-up-1.png', alt: "Don't Flock Up main menu screenshot" },
+            { src: '/assets/projects/dont-flock-up-2.png', alt: "Don't Flock Up cooperative gameplay screenshot" },
         ],
     },
 ];
@@ -212,7 +217,11 @@ const cardVariants = {
 };
 
 function ProjectCard({ project }) {
-    const hasImage = typeof project.image === 'string' && project.image.trim().length > 0;
+    const imageList = Array.isArray(project.images)
+        ? project.images.filter(Boolean)
+        : typeof project.image === 'string' && project.image.trim().length > 0
+            ? [{ src: project.image, alt: project.imageAlt || project.title }]
+            : [];
 
     return (
         <motion.div
@@ -264,18 +273,23 @@ function ProjectCard({ project }) {
                 </div>
             )}
 
-            {hasImage ? (
-                <div className="mt-4 flex justify-center">
-                    <img
-                        src={project.image}
-                        alt={project.imageAlt || project.title}
-                        className="h-[220px] w-auto max-w-full object-cover rounded-xl border border-white/20"
-                        loading="lazy"
-                    />
+            {imageList.length > 0 ? (
+                <div className="mt-4 flex flex-wrap justify-center gap-4">
+                    {imageList.map(({ src, alt }, idx) => (
+                        <figure
+                            key={`${project.title}-img-${idx}`}
+                            className="w-[240px] sm:w-[260px] rounded-xl bg-black/30 overflow-hidden"
+                        >
+                            <img
+                                src={src}
+                                alt={alt || project.title}
+                                className="w-full object-contain"
+                                loading="lazy"
+                            />
+                        </figure>
+                    ))}
                 </div>
-            ) : (
-                null
-            )}
+            ) : null}
         </motion.div>
     );
 }
@@ -292,7 +306,7 @@ export default function Projects() {
             <motion.div
                 className="min-h-screen w-screen text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6 pl-6"
                 style={{
-                    backgroundImage: "url('./src/assets/images/empty_bg.png')",
+                    backgroundImage: "url('/assets/images/empty_bg.png')",
                     backgroundColor: '#000',
                 }}
             >

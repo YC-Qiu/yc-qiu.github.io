@@ -136,7 +136,7 @@ export default function Work() {
             <motion.div
                 className="min-h-screen w-screen text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6 pl-6"
                 style={{
-                    backgroundImage: "url('./src/assets/images/empty_bg.png')",
+                    backgroundImage: "url('/assets/images/empty_bg.png')",
                     backgroundColor: '#000',
                 }}
             >
