@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+    <meta http-equiv="refresh" content="0; url=https://yc-qiu.github.io/" />
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #050505;
+        color: #f0f0f0;
+        font-family: 'Fredoka', sans-serif;
+      }
+      .card {
+        text-align: center;
+        padding: 24px 32px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+      }
+      a {
+        color: #3dbae3;
+      }
+    </style>
+    <script>
+      const target = "https://yc-qiu.github.io/";
+      const legacyBase = "/ycqiu.github.io";
+      const currentPath = window.location.pathname || "";
+      const redirectPath = currentPath.startsWith(legacyBase)
+        ? currentPath.slice(legacyBase.length)
+        : currentPath;
+      const finalUrl = target.replace(/\/$/, "") + redirectPath + window.location.search + window.location.hash;
+      window.location.replace(finalUrl);
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Redirecting…</h1>
+      <p>You should be taken to the new site automatically.</p>
+      <p>If not, <a href="https://yc-qiu.github.io/">click here</a>.</p>
+    </div>
+  </body>
+</html>
