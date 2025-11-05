@@ -112,6 +112,36 @@ export default function Education() {
         },
     };
 
+    const backgroundSrc = '/assets/images/empty_bg.png';
+    const [bgLoaded, setBgLoaded] = React.useState(false);
+
+    React.useEffect(() => {
+        const img = new Image();
+        img.src = backgroundSrc;
+
+        const handleReady = () => setBgLoaded(true);
+        if (img.complete) {
+            setBgLoaded(true);
+        } else {
+            img.addEventListener('load', handleReady);
+            img.addEventListener('error', handleReady);
+        }
+
+        return () => {
+            img.removeEventListener('load', handleReady);
+            img.removeEventListener('error', handleReady);
+        };
+    }, [backgroundSrc]);
+
+    if (!bgLoaded) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
+                <div className="h-16 w-16 rounded-full border-4 border-[#3dbae3]/40 border-t-[#fcd34d] animate-spin" />
+                <p className="mt-5 uppercase tracking-[0.35em] text-sm text-white/70">loading</p>
+            </div>
+        );
+    }
+
     return (
         <motion.div
             className="min-h-screen bg-black text-white p-6"
@@ -120,95 +150,95 @@ export default function Education() {
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
         >
-        <motion.div
-            className="min-h-screen w-screen text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6 pl-6"
-            style={{
-                backgroundImage: "url('/assets/images/empty_bg.png')",
-                backgroundColor: '#000',
-            }}
-        >
             <motion.div
-                className="max-w-5xl mx-auto space-y-12 pt-4 pl-4 edu-tight"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
+                className="min-h-screen w-full text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6"
+                style={{
+                    backgroundImage: `url('${backgroundSrc}')`,
+                    backgroundColor: '#000',
+                }}
             >
-                <motion.div variants={headerVariants} className="w-fit">
-                    <Link
-                        to="/"
-                        className="no-visited text-white text-xl px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg backdrop-blur-sm w-fit inline-flex items-center justify-center shadow-md transition"
-                        title="Back to Home"
-                        style={{ marginTop: "24px", marginLeft: "24px" }}
-                    >
-                        <i className="fas fa-arrow-left fa-3x leading-none !text-[#213547] hover:!text-[#213547] visited:!text-[#213547] focus:!text-[#213547] active:!text-[#213547] p-2"></i>
-                    </Link>
-                </motion.div>
+                <motion.div
+                    className="max-w-5xl mx-auto space-y-12 pt-4 px-4 edu-tight"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <motion.div variants={headerVariants} className="w-fit">
+                        <Link
+                            to="/"
+                            className="no-visited text-white text-xl px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg backdrop-blur-sm w-fit inline-flex items-center justify-center shadow-md transition"
+                            title="Back to Home"
+                            style={{ marginTop: "24px", marginLeft: "24px" }}
+                        >
+                            <i className="fas fa-arrow-left fa-3x leading-none !text-[#213547] hover:!text-[#213547] visited:!text-[#213547] focus:!text-[#213547] active:!text-[#213547] p-2"></i>
+                        </Link>
+                    </motion.div>
 
 
-                <motion.h1 variants={headerVariants} className="orbitron text-5xl font-bold text-center text-white">Education 👨‍💼</motion.h1>
+                    <motion.h1 variants={headerVariants} className="orbitron text-5xl font-bold text-center text-white">Education 👨‍💼</motion.h1>
 
-                {educationSections.map(({ key, title }) => {
-                    const items = educationData
-                        .filter((edu) => edu.category === key)
-                        .sort((a, b) => a.order - b.order);
+                    {educationSections.map(({ key, title }) => {
+                        const items = educationData
+                            .filter((edu) => edu.category === key)
+                            .sort((a, b) => a.order - b.order);
 
-                    if (items.length === 0) return null;
+                        if (items.length === 0) return null;
 
-                    return (
-                        <motion.section key={key} className="space-y-6" variants={sectionVariants}>
-                            <motion.h2 variants={headerVariants} className="orbitron text-3xl font-bold text-[#213547] text-center">{title}</motion.h2>
-                            <motion.div className="space-y-6" variants={listVariants}>
-                                {items.map((edu) => (
-                                    <motion.div
-                                        key={edu.school}
-                                        className="bg-white/10 text-white px-[40px] py-[12px] rounded-2xl shadow-lg backdrop-blur-sm border border-white/20 hover:ring-4 hover:ring-yellow-300/60 hover:ring-inset transition-all"
-                                        variants={cardVariants}
-                                    >
-                                        <div className="flex items-center">
-                                            {edu.logo && (
-                                                <img
-                                                    src={edu.logo}
-                                                    alt={`${edu.school} logo`}
-                                                    className="edu-logo"
-                                                    loading="lazy"
-                                                />
+                        return (
+                            <motion.section key={key} className="space-y-6" variants={sectionVariants}>
+                                <motion.h2 variants={headerVariants} className="orbitron text-3xl font-bold text-[#213547] text-center">{title}</motion.h2>
+                                <motion.div className="space-y-6" variants={listVariants}>
+                                    {items.map((edu) => (
+                                        <motion.div
+                                            key={edu.school}
+                                            className="bg-white/10 text-white px-[40px] py-[12px] rounded-2xl shadow-lg backdrop-blur-sm border border-white/20 hover:ring-4 hover:ring-yellow-300/60 hover:ring-inset transition-all"
+                                            variants={cardVariants}
+                                        >
+                                            <div className="flex items-center">
+                                                {edu.logo && (
+                                                    <img
+                                                        src={edu.logo}
+                                                        alt={`${edu.school} logo`}
+                                                        className="edu-logo"
+                                                        loading="lazy"
+                                                    />
+                                                )}
+                                                <h3 className="oxanium text-2xl font-bold flex-1">{edu.school}</h3>
+                                            </div>
+
+                                            {/* Row 1: Degree (left) | Time (right) */}
+                                            <div className="mt-1 text-sm text-gray-300 flex justify-between">
+                                                <span className="orbitron italic text-white/90">{edu.degree}</span>
+                                                <span className="bungee">{edu.time}</span>
+                                            </div>
+
+                                            {/* Row 2: GPA (left) | Location (right) */}
+                                            <div className="mt-1 text-sm text-gray-300 flex justify-between">
+                                                <span className="orbitron not-italic">{edu.gpa ? (<><strong>GPA:</strong> {edu.gpa}</>) : ''}</span>
+                                                <span className="orbitron italic">{edu.location}</span>
+                                            </div>
+
+                                            {edu.honors.length > 0 && (
+                                                <div className="mt-2 overflow-x-auto leading-tight">
+                                                    <span className="font-bold inline">Honors: </span>
+                                                    <span className="oxanium whitespace-nowrap italic">{edu.honors.join(', ')}</span>
+                                                </div>
                                             )}
-                                            <h3 className="oxanium text-2xl font-bold flex-1">{edu.school}</h3>
-                                        </div>
 
-                                        {/* Row 1: Degree (left) | Time (right) */}
-                                        <div className="mt-1 text-sm text-gray-300 flex justify-between">
-                                            <span className="orbitron italic text-white/90">{edu.degree}</span>
-                                            <span className="bungee">{edu.time}</span>
-                                        </div>
-
-                                        {/* Row 2: GPA (left) | Location (right) */}
-                                        <div className="mt-1 text-sm text-gray-300 flex justify-between">
-                                            <span className="orbitron not-italic">{edu.gpa ? (<><strong>GPA:</strong> {edu.gpa}</>) : ''}</span>
-                                            <span className="orbitron italic">{edu.location}</span>
-                                        </div>
-
-                                        {edu.honors.length > 0 && (
-                                            <div className="mt-2 overflow-x-auto leading-tight">
-                                                <span className="font-bold inline">Honors: </span>
-                                                <span className="oxanium whitespace-nowrap italic">{edu.honors.join(', ')}</span>
-                                            </div>
-                                        )}
-
-                                        {(edu.courses?.length > 0 || edu.coursesText) && (
-                                            <div className="mt-2 overflow-x-auto">
-                                                <span className="font-bold inline">Course List: </span>
-                                                <span className="whitespace-nowrap italic">{edu.coursesText ?? edu.courses.join(', ')}</span>
-                                            </div>
-                                        )}
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </motion.section>
-                    );
-                })}
+                                            {(edu.courses?.length > 0 || edu.coursesText) && (
+                                                <div className="mt-2 overflow-x-auto">
+                                                    <span className="font-bold inline">Course List: </span>
+                                                    <span className="whitespace-nowrap italic">{edu.coursesText ?? edu.courses.join(', ')}</span>
+                                                </div>
+                                            )}
+                                        </motion.div>
+                                    ))}
+                                </motion.div>
+                            </motion.section>
+                        );
+                    })}
+                </motion.div>
             </motion.div>
-        </motion.div>
         </motion.div>
     );
 }

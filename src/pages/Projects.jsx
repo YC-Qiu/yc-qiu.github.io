@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const projectSections = [
-    { key: 'featured', title: 'Featured Projects' },
-    { key: 'coursework', title: 'Coursework Projects' },
+    { key: 'ai-ml', title: 'AI / ML Projects' },
+    { key: 'featured-game', title: 'Featured Game Projects' },
+    { key: 'coursework', title: 'Coursework Game Projects' },
 ];
 
 const projects = [
@@ -12,7 +13,7 @@ const projects = [
         category: 'coursework',
         order: 3,
         title: 'The Legend of Zelda – Unity Remastered',
-        location: 'University of Michigan, Ann Arbor, MI',
+        location: 'University of Michigan',
         time: '2023.01 – 2023.02',
         tech: 'Unity, C#',
         team: 'Co-op with Varun Rajesh',
@@ -35,7 +36,7 @@ const projects = [
         category: 'coursework',
         order: 2,
         title: 'Computer Lab Simulator – VR Experience',
-        location: 'University of Michigan, Ann Arbor, MI',
+        location: 'University of Michigan',
         time: '2023.01 – 2023.02',
         tech: 'Unreal Engine, Blueprint',
         team: 'Co-op with Mehar Chhatwal',
@@ -53,11 +54,11 @@ const projects = [
         images: [],
     },
     {
-        category: 'featured',
+        category: 'featured-game',
         order: 1,
         title: 'Checkmate',
-        location: 'University of Michigan, Ann Arbor, MI',
-        time: '2023.02 (two-week sprint)',
+        location: 'University of Michigan',
+        time: '2023.01 – 2023.04',
         tech: 'Unity, C#',
         team: 'Individual project',
         description: [
@@ -74,14 +75,14 @@ const projects = [
             { label: 'Play Online', url: 'https://yc-qiu.itch.io/checkmate' },
         ],
         images: [
-            { src: '/assets/projects/checkmate.png', alt: 'Checkmate roguelike strategy game screenshot' },
+            { src: '/assets/game/checkmate.png', alt: 'Checkmate roguelike strategy game screenshot' },
         ],
     },
     {
         category: 'coursework',
         order: 1,
         title: 'Ann Arbor Go! – AR Game',
-        location: 'University of Michigan, Ann Arbor, MI',
+        location: 'University of Michigan',
         time: '2023.02 – 2023.03',
         tech: 'Unity AR, C#',
         team: 'Co-op with Mehar Chhatwal',
@@ -99,10 +100,10 @@ const projects = [
         images: [],
     },
     {
-        category: 'featured',
+        category: 'featured-game',
         order: 2,
         title: 'Cosmic Flux Frenzy',
-        location: 'University of Michigan, Ann Arbor, MI',
+        location: 'University of Michigan',
         time: '2023.02 – 2023.04',
         tech: 'Unity, C#',
         team: 'Team: Jeremy Angelo Damacino Abapo, Bilal Al-Jaibaji, Tianze You',
@@ -118,14 +119,14 @@ const projects = [
             { label: 'Watch the Trailer', url: 'https://www.youtube.com/watch?v=cowJNnLBkbo' },
         ],
         images: [
-            { src: '/assets/projects/cosmic-flux.png', alt: 'Cosmic Flux Frenzy gameplay screenshot' },
+            { src: '/assets/game/cosmic-flux.png', alt: 'Cosmic Flux Frenzy gameplay screenshot' },
         ],
     },
     {
-        category: 'featured',
+        category: 'featured-game',
         order: 3,
         title: 'VR Restaurant Simulator',
-        location: 'University of Michigan, Ann Arbor, MI',
+        location: 'University of Michigan',
         time: '2023.02 – 2023.04',
         tech: 'Unreal Engine 5',
         team: 'Team: Hongxiao Zheng, Yi He, Ruiying He, Mehar Chhatwal',
@@ -143,19 +144,19 @@ const projects = [
             { label: 'Product Website', url: 'https://p3-devlog.webflow.io/' },
         ],
         images: [
-            { src: '/assets/projects/restaurant-simulator.png', alt: 'VR restaurant simulator environment' },
+            { src: '/assets/game/restaurant-simulator.png', alt: 'VR restaurant simulator environment' },
         ],
     },
     {
-        category: 'featured',
+        category: 'featured-game',
         order: 4,
         title: "Don't Flock Up", 
-        location: 'University of Michigan, Ann Arbor, MI',
+        location: 'University of Michigan',
         time: '2024.12',
         tech: 'Unity',
         team: 'Game jam team: Alexander, Dallas, Tristan, Justin',
         description: [
-            'A cooperative “Counterproductive” themed game jam entry that won 3rd place at U of M’s Turkey Game Jam.',
+            'A cooperative “Counterproductive” themed game jam entry that won the <highlight>3rd place</highlight> at U of M’s Turkey Game Jam.',
         ],
         contributions: [
             'Produced interface assets, main run loop, sound effects, and sprite visuals.',
@@ -164,9 +165,53 @@ const projects = [
             { label: 'Windows Build', url: 'https://drive.google.com/file/d/1wa_LHYLO8CnsMDPuFeA1HMNHkBvqM5SH/view?usp=sharing' },
         ],
         images: [
-            { src: '/assets/projects/dont-flock-up-1.png', alt: "Don't Flock Up main menu screenshot" },
-            { src: '/assets/projects/dont-flock-up-2.png', alt: "Don't Flock Up cooperative gameplay screenshot" },
+            { src: '/assets/game/dont-flock-up-1.png', alt: "Don't Flock Up main menu screenshot" },
+            { src: '/assets/game/dont-flock-up-2.png', alt: "Don't Flock Up cooperative gameplay screenshot" },
         ],
+    },
+    {
+        category: 'ai-ml',
+        order: 1,
+        title: 'Understanding Global Drivers and Barriers of AI Adoption',
+        location: 'Northwestern University',
+        time: '2025 Fall',
+        tech: 'Python, Tableau, Supervised ML (Classification & Regression)',
+        team: '',
+        description: [
+            'Analyzed a multilingual survey to reveal <highlight>who adopts AI and who hesitates</highlight> across regions.',
+            'Built a full pipeline—<highlight>data cleaning, feature engineering, supervised models, Tableau dashboards</highlight>—to turn raw responses into clear signals.',
+            'Findings guide <highlight>market targeting, localization, and responsible rollout</highlight> for global AI initiatives.',
+        ],
+        contributions: [
+            'Standardized 20+ country datasets and engineered behavioral features from survey text.',
+            'Benchmarked classification and regression models to rank adoption drivers.',
+            'Delivered interactive Tableau stories summarizing readiness, barriers, and personas.',
+        ],
+        links: [],
+        images: [
+            { src: '/assets/ai_projects/ai_opinion1.png', alt: 'Global AI adoption dashboard view' },
+            { src: '/assets/ai_projects/ai_opinion2.png', alt: 'Country-level AI adoption readiness analysis' },
+        ],
+    },
+    {
+        category: 'ai-ml',
+        order: 2,
+        title: 'Robust Sentiment Analysis under Textual Perturbations',
+        location: 'Northwestern University',
+        time: '2025 Fall',
+        tech: 'Python (scikit-learn, pandas), NLP feature engineering, robustness evaluation',
+        team: '',
+        description: [
+            'Stress-tested sentiment models against <highlight>noisy / adversarial text</highlight> to mirror real feedback pipelines.',
+            'Trained <highlight>Random Forest + TF-IDF</highlight> models on IMDb & Amazon data with controlled perturbations.',
+            'Showed that lightweight defenses—<highlight>N-gram smoothing, synonym grouping, pruning</highlight>—keep accuracy stable.',
+        ],
+        contributions: [
+            'Built perturbation + evaluation pipeline (accuracy, macro-F1, robustness drop) to audit model resilience.',
+            'Produced playbook of lightweight techniques for teams needing production-ready, robust NLP.',
+        ],
+        links: [],
+        images: [],
     },
 ];
 
@@ -223,78 +268,129 @@ function ProjectCard({ project }) {
             ? [{ src: project.image, alt: project.imageAlt || project.title }]
             : [];
 
+    const renderParagraph = (paragraph, idx) => {
+        const highlightPattern = /<highlight>(.*?)<\/highlight>/g;
+        if (!highlightPattern.test(paragraph)) {
+            return <>{paragraph}</>;
+        }
+        const parts = paragraph.split(/<highlight>|<\/highlight>/);
+        return parts.map((part, i) =>
+            i % 2 === 1 ? (
+                <span key={`${idx}-hl-${i}`} className="oxanium font-semibold tracking-tight">
+                    {part}
+                </span>
+            ) : (
+                part
+            )
+        );
+    };
+
     return (
         <motion.div
-            className="bg-white/10 text-white px-[40px] py-[12px] rounded-2xl shadow-lg backdrop-blur-sm border border-white/20 hover:ring-4 hover:ring-yellow-300/60 hover:ring-inset transition-all"
+            className="bg-white/10 text-white rounded-2xl shadow-lg backdrop-blur-sm border border-white/20 hover:ring-4 hover:ring-yellow-300/60 hover:ring-inset transition-all"
             variants={cardVariants}
         >
-            <h3 className="oxanium text-2xl font-bold">{project.title}</h3>
+            <div className="px-[40px] py-[12px]">
+                <h2 className="oxanium text-4xl font-bold">{project.title}</h2>
 
-            <div className="mt-1 text-sm text-gray-300 flex justify-between">
-                <span className="orbitron italic text-white/90">{project.location}</span>
-                <span className="bungee">{project.time}</span>
+                <div className="mt-1 text-sm text-gray-300 flex justify-between">
+                    <span className="orbitron italic text-white/90">{project.location}</span>
+                    <span className="bungee">{project.time}</span>
+                </div>
+
+                <div className="mt-1 text-sm text-gray-300 flex flex-wrap justify-between gap-y-1">
+                    <span className="text-white/80"><strong>Tech:</strong> {project.tech}</span>
+                    {project.team && <span className="italic text-right">{project.team}</span>}
+                </div>
+
+                <div className="mt-1 flex flex-col gap-1 project-tight">
+                    {project.description?.map((paragraph, idx) => (
+                        <p key={idx} className="text-white/90 leading-tight">
+                            {renderParagraph(paragraph, idx)}
+                        </p>
+                    ))}
+                </div>
+
+                {project.contributions?.length > 0 && (
+                    <div className="mt-3 space-y-1.5">
+                        {project.contributions.map((item, idx) => (
+                            <div key={idx} className="text-sm text-white/90 leading-tight flex gap-2">
+                                <span className="text-[#213547]">• &nbsp;</span>
+                                <span className="flex-1">{item}</span>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {project.links?.length > 0 && (
+                    <div className="mt-4 flex flex-col gap-1 italic text-[#3dbae3]">
+                        {project.links.map(({ label, url }) => (
+                            <a
+                                key={label}
+                                href={url}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="no-visited hover:text-[#fcd34d] underline underline-offset-4 decoration-dotted"
+                            >
+                                {label}
+                            </a>
+                        ))}
+                    </div>
+                )}
+
+                {imageList.length > 0 ? (
+                    <div className="mt-4 flex flex-wrap justify-center gap-4">
+                        {imageList.map(({ src, alt }, idx) => (
+                            <figure
+                                key={`${project.title}-img-${idx}`}
+                                className="w-[500px] sm:w-[500px] rounded-[10px] bg-black/30 overflow-hidden"
+                            >
+                                <img
+                                    src={src}
+                                    alt={alt || project.title}
+                                    className="w-full object-contain rounded-[10px]"
+                                    loading="lazy"
+                                />
+                            </figure>
+                        ))}
+                    </div>
+                ) : null}
             </div>
-
-            <div className="mt-1 text-sm text-gray-300 flex flex-wrap justify-between gap-y-1">
-                <span className="text-white/80"><strong>Tech:</strong> {project.tech}</span>
-                {project.team && <span className="italic text-right">{project.team}</span>}
-            </div>
-
-            {project.description?.map((paragraph, idx) => (
-                <p key={idx} className="mt-3 text-white/90 leading-snug">
-                    {paragraph}
-                </p>
-            ))}
-
-            {project.contributions?.length > 0 && (
-                <div className="mt-3 space-y-1">
-                    {project.contributions.map((item, idx) => (
-                        <div key={idx} className="text-sm text-white/90 leading-tight">
-                            <span className="text-[#213547]">{`•\u00A0\u00A0`}</span>
-                            <span>{item}</span>
-                        </div>
-                    ))}
-                </div>
-            )}
-
-            {project.links?.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-3">
-                    {project.links.map(({ label, url }) => (
-                        <a
-                            key={label}
-                            href={url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="no-visited text-[#3dbae3] hover:text-[#fcd34d] underline-offset-4 decoration-dotted"
-                        >
-                            {label}
-                        </a>
-                    ))}
-                </div>
-            )}
-
-            {imageList.length > 0 ? (
-                <div className="mt-4 flex flex-wrap justify-center gap-4">
-                    {imageList.map(({ src, alt }, idx) => (
-                        <figure
-                            key={`${project.title}-img-${idx}`}
-                            className="w-[240px] sm:w-[260px] rounded-xl bg-black/30 overflow-hidden"
-                        >
-                            <img
-                                src={src}
-                                alt={alt || project.title}
-                                className="w-full object-contain"
-                                loading="lazy"
-                            />
-                        </figure>
-                    ))}
-                </div>
-            ) : null}
         </motion.div>
     );
 }
 
 export default function Projects() {
+    const backgroundSrc = '/assets/images/empty_bg.png';
+    const [bgLoaded, setBgLoaded] = React.useState(false);
+
+    React.useEffect(() => {
+        const img = new Image();
+        img.src = backgroundSrc;
+
+        const handleReady = () => setBgLoaded(true);
+        if (img.complete) {
+            setBgLoaded(true);
+        } else {
+            img.addEventListener('load', handleReady);
+            img.addEventListener('error', handleReady);
+        }
+
+        return () => {
+            img.removeEventListener('load', handleReady);
+            img.removeEventListener('error', handleReady);
+        };
+    }, [backgroundSrc]);
+
+    if (!bgLoaded) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
+                <div className="h-16 w-16 rounded-full border-4 border-[#3dbae3]/40 border-t-[#fcd34d] animate-spin" />
+                <p className="mt-5 uppercase tracking-[0.35em] text-sm text-white/70">loading</p>
+            </div>
+        );
+    }
+
     return (
         <motion.div
             className="min-h-screen bg-black text-white p-6"
@@ -304,14 +400,14 @@ export default function Projects() {
             transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
             <motion.div
-                className="min-h-screen w-screen text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6 pl-6"
+                className="min-h-screen w-full text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6"
                 style={{
-                    backgroundImage: "url('/assets/images/empty_bg.png')",
+                    backgroundImage: `url('${backgroundSrc}')`,
                     backgroundColor: '#000',
                 }}
             >
                 <motion.div
-                    className="max-w-5xl mx-auto space-y-12 pt-4 pl-4 edu-tight"
+                    className="max-w-5xl mx-auto space-y-14 pt-4 px-4 project-tight"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -330,27 +426,34 @@ export default function Projects() {
                     <motion.h1 variants={headerVariants} className="orbitron text-5xl font-bold text-center text-white">
                         Projects 👨‍💻
                     </motion.h1>
+                    <div className="space-y-14 project-tight">
+                        {projectSections.map(({ key, title }) => {
+                            const items = projects
+                                .filter((proj) => proj.category === key)
+                                .sort((a, b) => a.order - b.order);
 
-                    {projectSections.map(({ key, title }) => {
-                        const items = projects
-                            .filter((proj) => proj.category === key)
-                            .sort((a, b) => a.order - b.order);
+                            if (items.length === 0) return null;
 
-                        if (items.length === 0) return null;
-
-                        return (
-                            <motion.section key={key} className="space-y-6" variants={sectionVariants}>
-                                <motion.h2 variants={headerVariants} className="orbitron text-3xl font-bold text-[#213547] text-center">
-                                    {title}
-                                </motion.h2>
-                                <motion.div className="space-y-6" variants={listVariants}>
-                                    {items.map((project) => (
-                                        <ProjectCard key={project.title} project={project} />
-                                    ))}
-                                </motion.div>
-                            </motion.section>
-                        );
-                    })}
+                            return (
+                                <motion.section key={key} className="space-y-8" variants={sectionVariants}>
+                                    <motion.h2
+                                        variants={headerVariants}
+                                        className="orbitron text-5xl font-bold text-[#213547] text-center mt-16 mb-12"
+                                    >
+                                        {title}
+                                    </motion.h2>
+                                    <motion.div className="space-y-6" variants={listVariants}>
+                                        {items.map((project) => (
+                                            <ProjectCard
+                                                key={project.title}
+                                                project={project}
+                                            />
+                                        ))}
+                                    </motion.div>
+                                </motion.section>
+                            );
+                        })}
+                    </div>
                 </motion.div>
             </motion.div>
         </motion.div>

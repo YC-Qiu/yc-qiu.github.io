@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Education from './pages/Education';
 import Projects from './pages/Projects';
 import Work from './pages/Work';
-import Hobbies from './pages/Hobbies';
+import BoardGame from './pages/BoardGame';
 import './index.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -13,7 +13,7 @@ const sections = [
   { title: 'Education', image: '/assets/images/education.png', path: '/education' },
   { title: 'Projects', image: '/assets/images/projects.png', path: '/projects' },
   { title: 'Work', image: '/assets/images/work.png', path: '/work' },
-  { title: 'Hobbies', image: '/assets/images/hobby.png', path: '/hobbies' },
+  { title: 'Board Game', image: '/assets/images/board-game.png', path: '/board-game' },
 ];
 
 const socialLinks = [
@@ -78,6 +78,26 @@ const cardVariants = {
 function Home() {
   const [activeCard, setActiveCard] = React.useState(null);
   const navigate = useNavigate();
+  const backgroundSrc = '/assets/images/index_bg.png';
+  const [bgLoaded, setBgLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    const img = new Image();
+    img.src = backgroundSrc;
+
+    const handleReady = () => setBgLoaded(true);
+    if (img.complete) {
+      setBgLoaded(true);
+    } else {
+      img.addEventListener('load', handleReady);
+      img.addEventListener('error', handleReady);
+    }
+
+    return () => {
+      img.removeEventListener('load', handleReady);
+      img.removeEventListener('error', handleReady);
+    };
+  }, [backgroundSrc]);
 
   const handleCardClick = React.useCallback(
     (event, path, index) => {
@@ -92,11 +112,22 @@ function Home() {
     [activeCard, navigate]
   );
 
+  if (!bgLoaded) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
+        <div className="h-16 w-16 rounded-full border-4 border-[#3dbae3]/40 border-t-[#fcd34d] animate-spin" />
+        <p className="mt-5 uppercase tracking-[0.35em] text-sm text-white/70">
+          loading
+        </p>
+      </div>
+    );
+  }
+
   return (
     <motion.div
-      className="h-screen w-screen text-white px-10 bg-cover bg-center bg-no-repeat bg-fixed"
+      className="min-h-screen w-full text-white px-10 bg-cover bg-center bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/assets/images/index_bg.png')",
+        backgroundImage: `url('${backgroundSrc}')`,
         backgroundColor: '#000',
       }}
       initial={{ opacity: 0, y: 30 }}
@@ -182,24 +213,30 @@ function Home() {
         ))}
       </div>
 
-      {/* Social Section */}
-      <div className="text-center mt-16 mb-4">
-        <p className="orbitron text-[35px] font-semibold">Connect with me</p>
-      </div>
-      <div className="grid grid-flow-col auto-cols-max justify-center gap-x-10 pt-6 pb-10">
-        {socialLinks.map(({ title, iconClass, url }) => (
-          <a
-            key={title}
-            href={url}
-            target="_blank"
-            rel="noreferrer"
-            className="bg-white text-[#3dbae3] no-visited w-[90px] h-[90px] rounded-2xl icon-link flex items-center justify-center shadow-xl hover:rotate-12 hover:scale-110 transition"
-            title={title}
-          >
-            <i className={`${iconClass} text-[70px]`}></i>
-          </a>
-        ))}
-      </div>
+      <motion.div
+        className="mt-12 flex flex-col items-center space-y-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
+      >
+        <h3 className="connect-heading oxanium text-3xl tracking-[0.45em] uppercase drop-shadow-[0_0_12px_rgba(252,211,77,0.6)]">
+          Connect With Me
+        </h3>
+        <div className="flex flex-wrap items-center justify-center gap-16">
+          {socialLinks.map(({ title, iconClass, url }) => (
+            <a
+              key={title}
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+              className="social-icon-link"
+              aria-label={title}
+            >
+              <i className={`${iconClass} fa-3x`} />
+            </a>
+          ))}
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -211,7 +248,7 @@ export default function App() {
       <Route path="/education" element={<Education />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/work" element={<Work />} />
-      <Route path="/hobbies" element={<Hobbies />} />
+      <Route path="/board-game" element={<BoardGame />} />
     </Routes>
   );
 }

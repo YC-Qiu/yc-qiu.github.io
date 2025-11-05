@@ -125,6 +125,36 @@ function EntryCard({ data }) {
 }
 
 export default function Work() {
+    const backgroundSrc = '/assets/images/empty_bg.png';
+    const [bgLoaded, setBgLoaded] = React.useState(false);
+
+    React.useEffect(() => {
+        const img = new Image();
+        img.src = backgroundSrc;
+
+        const handleReady = () => setBgLoaded(true);
+        if (img.complete) {
+            setBgLoaded(true);
+        } else {
+            img.addEventListener('load', handleReady);
+            img.addEventListener('error', handleReady);
+        }
+
+        return () => {
+            img.removeEventListener('load', handleReady);
+            img.removeEventListener('error', handleReady);
+        };
+    }, [backgroundSrc]);
+
+    if (!bgLoaded) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
+                <div className="h-16 w-16 rounded-full border-4 border-[#3dbae3]/40 border-t-[#fcd34d] animate-spin" />
+                <p className="mt-5 uppercase tracking-[0.35em] text-sm text-white/70">loading</p>
+            </div>
+        );
+    }
+
     return (
         <motion.div
             className="min-h-screen bg-black text-white p-6"
@@ -134,14 +164,14 @@ export default function Work() {
             transition={{ duration: 0.4, ease: 'easeInOut' }}
         >
             <motion.div
-                className="min-h-screen w-screen text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6 pl-6"
+                className="min-h-screen w-full text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6"
                 style={{
-                    backgroundImage: "url('/assets/images/empty_bg.png')",
+                    backgroundImage: `url('${backgroundSrc}')`,
                     backgroundColor: '#000',
                 }}
             >
                 <motion.div
-                    className="max-w-5xl mx-auto space-y-12 pt-4 pl-4 edu-tight"
+                    className="max-w-5xl mx-auto space-y-12 pt-4 px-4 edu-tight"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
