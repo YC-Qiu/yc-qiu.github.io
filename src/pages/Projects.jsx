@@ -213,6 +213,37 @@ const projects = [
         links: [],
         images: [],
     },
+    {
+        category: 'ai-ml',
+        order: 3,
+        title: 'Meal Logistics Planner: AI Scheduling for Multi-Dish Cooking',
+        location: 'Northwestern University',
+        time: '2026 Winter',
+        tech: 'Python, PDDL (Fast Downward), LLM integration, planning & scheduling',
+        team: '',
+        description: [
+            'Developed an AI-powered system to automatically coordinate multi-dish cooking under resource and timing constraints.',
+            'Modeled recipes as task graphs with dependencies and resource requirements, and translated them into PDDL planning problems to generate conflict-free execution plans.',
+            'Built a full pipeline from natural language input to synchronized schedules, bottleneck resource detection, and detailed execution timelines.',
+        ],
+        contributions: [
+            'Designed symbolic planning framework ensuring all dishes finish simultaneously without resource conflicts.',
+            'Implemented PDDL-based planner with fallback scheduling for robustness.',
+            'Built interactive web interface with an LLM agent for custom kitchen and recipe generation.',
+            'Delivered end-to-end system from natural language input to planning and executable schedule.',
+        ],
+        links: [
+            { label: 'GitHub Repository', url: 'https://github.com/weicheng998/371-meal-logistics-planner' },
+            { label: 'Project Poster', url: 'https://drive.google.com/file/d/1F5NqtPl5cbXQWFZAe2xmjbLqB-rCn1wc/view?usp=sharing' },
+        ],
+        images: [],
+        videos: [
+            {
+                src: 'https://www.youtube.com/embed/fOl1YRtSIp4',
+                title: 'Meal Logistics Planner demo',
+            },
+        ],
+    },
 ];
 
 const containerVariants = {
@@ -267,6 +298,9 @@ function ProjectCard({ project }) {
         : typeof project.image === 'string' && project.image.trim().length > 0
             ? [{ src: project.image, alt: project.imageAlt || project.title }]
             : [];
+    const videoList = Array.isArray(project.videos)
+        ? project.videos.filter((video) => video?.src)
+        : [];
 
     const renderParagraph = (paragraph, idx) => {
         const highlightPattern = /<highlight>(.*?)<\/highlight>/g;
@@ -338,7 +372,7 @@ function ProjectCard({ project }) {
                     </div>
                 )}
 
-                {imageList.length > 0 ? (
+                {imageList.length > 0 || videoList.length > 0 ? (
                     <div className="mt-4 flex flex-wrap justify-center gap-4">
                         {imageList.map(({ src, alt }, idx) => (
                             <figure
@@ -351,6 +385,24 @@ function ProjectCard({ project }) {
                                     className="w-full object-contain rounded-[10px]"
                                     loading="lazy"
                                 />
+                            </figure>
+                        ))}
+                        {videoList.map(({ src, title }, idx) => (
+                            <figure
+                                key={`${project.title}-video-${idx}`}
+                                className="w-[500px] sm:w-[500px] rounded-[10px] bg-black/30 overflow-hidden"
+                            >
+                                <div className="relative w-full pt-[56.25%]">
+                                    <iframe
+                                        src={src}
+                                        title={title || `${project.title} video ${idx + 1}`}
+                                        className="absolute inset-0 h-full w-full rounded-[10px]"
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
+                                    />
+                                </div>
                             </figure>
                         ))}
                     </div>
