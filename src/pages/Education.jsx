@@ -19,6 +19,8 @@ export default function Education() {
                 'Deep Learning',
                 'Human-Computer Interaction',
                 'Natural Language Processing',
+                'Software Engineering',
+                'Computer Vision',
             ],
             logo: '/logos/education/northwestern.png',
         },
