@@ -16,6 +16,17 @@ export default function PlayCorner() {
   const [paused, setPaused] = useState(false);
   const [message, setMessage] = useState("Roll a die. Make a move. Change perspective.");
   const rollTimer = useRef(null);
+  const piecesRef = useRef(null);
+  useEffect(() => {
+    const autoPlayTimer = window.setInterval(() => {
+      if (document.hidden || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const buttons = piecesRef.current?.querySelectorAll("button");
+      if (!buttons?.length) return;
+      const button = buttons[Math.floor(Math.random() * buttons.length)];
+      if (button.getAttribute("aria-disabled") !== "true") button.click();
+    }, 10_000);
+    return () => window.clearInterval(autoPlayTimer);
+  }, []);
   useEffect(() => () => clearTimeout(rollTimer.current), []);
   const roll = () => {
     if (rollTimer.current) return;
@@ -45,8 +56,8 @@ export default function PlayCorner() {
     step(0);
   };
   return <section className={`play-corner animated-pieces${paused ? " pieces-paused" : ""}`} aria-label="Interactive game pieces">
-    <div className="play-pieces">
-      <button type="button" className="controller-piece" aria-pressed={paused} aria-label="Pause controller animation" onClick={() => setPaused(!paused)}>
+    <div className="play-pieces" ref={piecesRef}>
+      <button type="button" className="controller-piece" aria-pressed={paused} aria-label={paused ? "Resume controller animation" : "Pause controller animation"} onClick={() => setPaused(!paused)}>
         <svg viewBox="0 0 120 90" aria-hidden="true">
           <path d="M30 18Q14 18 9 44L5 65Q4 80 17 79L36 63H84L103 79Q116 80 115 65L111 44Q106 18 90 18Q76 14 69 22H51Q44 14 30 18Z" fill="#79c9cd" stroke="#223d61" strokeWidth="4"/>
           <path d="M27 29h10v11h11v10H37v11H27V50H16V40h11z" fill="#f4fbff" stroke="#223d61" strokeWidth="3" strokeLinejoin="round"/>
