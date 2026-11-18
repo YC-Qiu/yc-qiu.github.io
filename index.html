@@ -1,30 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Oxanium:wght@400;700&family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="preload" href="/src/assets/images/empty_bg.png" as="image" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YC's Portfolio</title>
-
-  <!-- Tailwind output (only if you're using raw HTML) -->
-  <!-- <link href="/dist/output.css" rel="stylesheet" /> -->
-
-  <!-- Font Awesome (optional for preloading) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-</head>
-
-<body class="bg-slate-900">
-  <div id="root"></div>
-
-  <script type="module" src="/src/main.jsx"></script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="YC (Yucheng) Qiu's portfolio: artificial intelligence, software, games, education and research."
+    />
+    <script>
+      window.addEventListener('error', function (event) {
+        if (event.target instanceof HTMLScriptElement) {
+          const root = document.getElementById('root');
+          if (root) root.innerHTML = '<main style="padding:32px;font-family:system-ui"><h1>This page could not load.</h1><p>Check your connection, then reload the page.</p><a href="">Reload page</a> · <a href="mailto:yc_qiu@hotmail.com">Contact YC</a></main>';
+        }
+      }, true);
+    </script>
+    <title>YC's Portfolio</title>
+  </head>
+  <body>
+    <div id="root">
+      <p style="padding: 24px; font-family: system-ui">
+        Opening YC’s portfolio…
+      </p>
+    </div>
+    <noscript
+      >This portfolio needs JavaScript. Contact
+      <a href="mailto:yc_qiu@hotmail.com">YC Qiu by email</a> or visit
+      <a href="https://github.com/YC-Qiu">GitHub</a>.</noscript
+    >
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

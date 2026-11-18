@@ -1,0 +1,57 @@
+export const additionalProjects = [
+  {
+    category: "ai-ml", order: 6,
+    title: "Abbott — AI Knowledge Assistant",
+    location: "Abbott",
+    type: "Industry capstone · Solution design",
+    status: "Solution design", art: "knowledge",
+    tech: "Enterprise AI, Knowledge Retrieval, Access Control, Product Design",
+    description: [
+      "Designed options for an enterprise AI assistant that helps teams find internal knowledge and carry out multi-step workflows without widening access to sensitive information.",
+      "An internal assistant has to do more than find a relevant document. It must respect who can access it, point users to the right source, and fit the way teams already work. Our capstone compared three directions: a standalone assistant, a shared knowledge service, and an agent that can guide multi-step workflows.",
+    ],
+    contributions: ["I worked on solution design, comparing the three approaches and turning stakeholder needs into design criteria. I focused on how users could verify an answer against its source, how access restrictions would carry through a workflow, and which concepts were worth prototyping."],
+    links: [], images: [],
+  },
+  {
+    category: "ai-ml", order: 5,
+    title: "Narrative Agent for Interactive Fiction",
+    type: "Independent course project · System design and evaluation plan",
+    status: "System design", art: "narrative",
+    tech: "LLM Agents, Tool Calling, State Management, Interactive Fiction",
+    description: [
+      "Designed an interactive-fiction agent that lets readers act in natural language while keeping the story consistent with author-defined rules and previous choices.",
+      "Writing every possible branch is expensive, but a free-form chatbot can contradict the story or reveal clues too early. My design keeps a persistent story state outside the model. The agent can read the state, look up information the player is allowed to know, and attempt actions. The backend validates important changes before the model narrates the result. For example, the model can describe a locked door, but it cannot decide the player has opened it without a valid action.",
+    ],
+    contributions: ["I designed the authoring flow, the three agent tools (get_state, query_story, attempt_action), and the boundary between narration and state updates. I also defined an evaluation plan to compare this approach with direct LLM dialogue on contradictions and rule violations."],
+    links: [], images: [],
+  },
+  {
+    category: "ai-ml", order: 4,
+    title: "Multi-View Football Foul Detection",
+    type: "Computer vision course project · Implemented",
+    status: "Implemented", art: "football",
+    tech: "Python, PyTorch, MViT-v2-S, Multi-View Video, Pose Estimation",
+    description: [
+      "Built a replay-review workflow that pairs football foul predictions with synchronized camera views and visual cues showing where contact likely occurred.",
+      "A single replay angle can hide the contact that matters. The system runs a pretrained VARS model with an MViT-v2-S backbone on multiple views to predict foul type and severity. It then uses pose and motion cues to highlight likely contact regions, so a reviewer can compare the same moment across angles, slow down playback, and export annotated video.",
+    ],
+    contributions: ["I integrated the pretrained inference pipeline with contact-region visualization, synchronized playback, and annotated exports. The contribution was the review workflow and its visual evidence, not a new benchmark result or a replacement for a referee’s decision."],
+    links: [{label: "GitHub", url: "https://github.com/jmoussa99/Computer-Vision---Foul-Detection"}], images: [],
+  },
+  {
+    category: "ai-ml", order: 7,
+    title: "Taking a Detour to Win: Strategic Blocking in LLM Agents",
+    type: "Agent AI research pilot · Team project",
+    team: "With Prakeerth Prasad",
+    status: "Research pilot", art: "blocking",
+    tech: "Reinforcement Learning, RAGEN, GRPO, LoRA, Qwen2.5",
+    description: [
+      "Tested whether reinforcement learning can teach a small language model to take a detour, block an opponent, and return to its goal in a grid-world race.",
+      "The agent competes against a fixed shortest-path (BFS) opponent. The winning maneuver can require moving away from the goal first to cut off the opponent. We fine-tuned Qwen2.5-0.5B-Instruct with LoRA and GRPO in RAGEN, starting with simpler layouts and introducing blocking later.",
+      "On one short development map, the policy went from **1/50 wins** before training to **46/50 wins** after the curriculum. It won **0/50** on a mirrored wide-map variant in the transfer evaluation, so the result does not establish robust transfer.",
+    ],
+    contributions: ["I ran local training, managed checkpoints and adapter exports, and evaluated the policies on maze and diagnostic tasks. My teammate ran the Colab transfer evaluation and helped identify interface and dependency issues."],
+    links: [], images: [],
+  },
+];
