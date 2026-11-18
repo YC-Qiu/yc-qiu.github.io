@@ -1,3 +1,4 @@
+import { LocaleContext, useLocale } from "./i18n/locale";
 import { Component, Suspense, lazy, useEffect } from "react";
 import { Routes, Route, Navigate, Link, useLocation } from "react-router-dom";
 import { SiteHeader, SiteFooter } from "./components/SiteLayout";
@@ -16,22 +17,24 @@ const titles = {
   "/games": "Games — YC Qiu",
 };
 class PageErrorBoundary extends Component {
+  static contextType = LocaleContext;
   state = { failed: false };
   static getDerivedStateFromError() {
     return { failed: true };
   }
   render() {
+    const { t } = this.context;
     if (this.state.failed)
       return (
         <main id="main-content" className="page-container error-page">
-          <p className="eyebrow">Connection interrupted</p>
-          <h1>This page couldn’t load.</h1>
-          <p>Please check your connection and try again.</p>
+          <p className="eyebrow">{t("Connection interrupted", "连接中断")}</p>
+          <h1>{t("This page couldn’t load.", "页面暂时无法加载。")}</h1>
+          <p>{t("Please check your connection and try again.", "请检查网络连接后重试。")}</p>
           <button
             className="button primary"
             onClick={() => window.location.reload()}
           >
-            Reload page ↻
+            {t("Reload page ↻", "重新加载 ↻")}
           </button>
         </main>
       );
@@ -39,6 +42,7 @@ class PageErrorBoundary extends Component {
   }
 }
 function PagePending() {
+  const { t } = useLocale();
   return (
     <main
       id="main-content"
@@ -48,9 +52,9 @@ function PagePending() {
       <div
         className="loading-line"
         role="progressbar"
-        aria-label="Loading page"
+        aria-label={t("Loading page", "正在加载页面")}
       />
-      <p role="status">Opening page…</p>
+      <p role="status">{t("Opening page…", "正在打开页面…")}</p>
       <div className="skeleton skeleton-heading" />
       <div className="skeleton skeleton-copy" />
       <div className="skeleton skeleton-panel" />
@@ -59,10 +63,14 @@ function PagePending() {
 }
 export default function App() {
   const { pathname } = useLocation();
+  const { language, t } = useLocale();
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    document.title = titles[pathname] || "Page not found — YC Qiu";
   }, [pathname]);
+  useEffect(() => {
+    const zhTitles = { "/": "YC Qiu — AI、软件与游戏", "/projects": "项目 — YC Qiu", "/work": "经历 — YC Qiu", "/education": "教育 — YC Qiu", "/games": "游戏 — YC Qiu" };
+    document.title = language === "zh" ? (zhTitles[pathname] || "页面未找到 — YC Qiu") : (titles[pathname] || "Page not found — YC Qiu");
+  }, [pathname, language]);
   return (
     <div className={pathname === "/" ? "app home-app" : "app"}>
       {pathname !== "/" && <div className="ambient-background" aria-hidden="true"><div className="ambient-glow glow-cyan" /><div className="ambient-glow glow-violet" /><div className="ambient-grid" /></div>}
@@ -79,7 +87,7 @@ export default function App() {
           }
         }}
       >
-        Skip to content
+        {t("Skip to content", "跳至正文")}
       </a>
       {pathname !== "/" && <SiteHeader />}
       <PageErrorBoundary key={`page:${pathname}`}>
@@ -96,9 +104,9 @@ export default function App() {
               element={
                 <main id="main-content" className="page-container error-page">
                   <p className="eyebrow">404</p>
-                  <h1>A little off the map.</h1>
+                  <h1>{t("A little off the map.", "这个页面还没有出现在地图上。")}</h1>
                   <Link className="button primary" to="/">
-                    Back to home ↗
+                    {t("Back to home ↗", "返回首页 ↗")}
                   </Link>
                 </main>
               }

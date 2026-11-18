@@ -2132,3 +2132,29 @@ button {
 }
 .game-shortcut small { display: block; margin-bottom: .4rem; }
 .game-shortcut:hover, .game-shortcut:focus-visible { text-decoration: underline; }
+
+/* Compact language controls: upper-right on home, alongside the interior navigation. */
+.header-actions { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.language-toggle { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; color: var(--muted); font-size: 14px; }
+.language-toggle button { border: 0; background: transparent; color: inherit; padding: 9px 7px; min-height: 40px; font: inherit; font-weight: 500; cursor: pointer; border-radius: 6px; }
+.language-toggle button[aria-pressed="true"] { color: var(--ink); font-weight: 750; text-decoration: underline; text-underline-offset: 5px; }
+.language-toggle button:hover { background: #dceaf080; }
+.language-toggle button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.home-language { position: absolute; z-index: 5; top: 18px; right: max(24px, calc((100vw - 1320px) / 2)); }
+.home-language .language-toggle { padding: 0 6px; border: 1px solid #b7d3df80; border-radius: 20px; background: #f5fbffe6; }
+:lang(zh-CN) .page-heading h1, :lang(zh-CN) .project-card h3, :lang(zh-CN) .featured-copy h2 { letter-spacing: 0; }
+:lang(zh-CN) .eyebrow { letter-spacing: .08em; }
+:lang(zh-CN) .project-summary, :lang(zh-CN) .project-details, :lang(zh-CN) .timeline-entry li { line-height: 1.85; }
+@media (min-width: 761px) and (max-width: 1100px) {
+  .site-header { gap: 20px; }
+  .site-header nav { gap: 20px; }
+  .header-actions { gap: 10px; }
+}
+@media (max-width: 760px) {
+  .header-actions { gap: 10px; }
+  .home-language { top: 12px; right: 16px; }
+  .home-content { padding-top: 76px; }
+}
+@media (max-width: 420px) {
+  .header-actions .contact-link { display: none; }
+}

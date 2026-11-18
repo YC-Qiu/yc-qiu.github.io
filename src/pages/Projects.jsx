@@ -1,5 +1,7 @@
+import { useLocale } from "../i18n/locale";
+import { localizeProject } from "../i18n/projects.zh";
 import { useState } from "react";
-import SiteLayout, { RichText } from "../components/SiteLayout";
+import SiteLayout from "../components/SiteLayout";
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import { projectSlug } from "../data/projectSlug";
@@ -13,9 +15,11 @@ const filters = [
   { key: "coursework", label: "Coursework" },
 ];
 export default function Projects() {
+  const { language, t } = useLocale();
+  const filterLabels = { all: "全部项目", "ai-ml": "AI 与机器学习", "featured-game": "游戏", coursework: "课程项目" };
   const [active, setActive] = useState("all");
   const [showFeatured, setShowFeatured] = useState(false);
-  const featured = projects.find(project => project.art === "narrative");
+  const featured = localizeProject(projects.find(project => project.art === "narrative"), language);
   const matches = projects
     .filter((project) => active === "all" || project.category === active)
     .sort(
@@ -26,25 +30,25 @@ export default function Projects() {
     );
   return (
     <SiteLayout
-      eyebrow="Selected work / experiments & explorations"
-      title="Projects"
-      intro="From AI that plans dinner to games that bend the rules. A collection of things I’ve designed, built, and learned from."
+      eyebrow={t("Selected work / experiments & explorations", "精选作品 / 实验与探索")}
+      title={t("Projects", "项目")}
+      intro={t("From AI that plans dinner to games that bend the rules. A collection of things I’ve designed, built, and learned from.", "从规划晚餐的 AI 到打破常规的游戏，记录我设计、开发和学习的过程。")}
     >
       <section className="featured-project" aria-labelledby="featured-title">
         <div className="featured-copy">
-          <p className="eyebrow"><span className="live-dot" /> FEATURED · NARRATIVE AGENTS</p>
-          <h2 id="featured-title">Narrative AI<br />Agent</h2>
+          <p className="eyebrow"><span className="live-dot" /> {t("FEATURED · NARRATIVE AGENTS", "精选 · 叙事智能体")}</p>
+          <h2 id="featured-title">{t("Narrative AI", "交互叙事")}<br />{t("Agent", "AI 智能体")}</h2>
           <p>{featured.description[0]}</p>
-          <div className="tech-tags"><span>Tool calling</span><span>Story state</span><span>Interactive fiction</span></div>
+          <div className="tech-tags"><span>{t("Tool calling", "工具调用")}</span><span>{t("Story state", "故事状态")}</span><span>{t("Interactive fiction", "交互式小说")}</span></div>
           <div className="featured-actions">
-            <button className="button primary" onClick={() => setShowFeatured(!showFeatured)} aria-expanded={showFeatured} aria-controls="featured-story-details">{showFeatured ? "Close project −" : "Explore the design +"}</button>
+            <button className="button primary" onClick={() => setShowFeatured(!showFeatured)} aria-expanded={showFeatured} aria-controls="featured-story-details">{showFeatured ? t("Close project −", "收起项目 −") : t("Explore the design +", "了解设计 +")}</button>
           </div>
-          <span className="featured-footnote">Independent course project · System design and evaluation plan</span>
+          <span className="featured-footnote">{featured.type}</span>
         </div>
         <ProjectArt kind="narrative" />
       </section>
-      <section id="featured-story-details" className="featured-story-details" hidden={!showFeatured} aria-label="Narrative agent design details">
-        {showFeatured && <><h3>{featured.title}</h3>{featured.description.slice(1).map(text => <p key={text}>{text}</p>)}<h4>My contribution</h4>{featured.contributions.map(text => <p key={text}>{text}</p>)}</>}
+      <section id="featured-story-details" className="featured-story-details" hidden={!showFeatured} aria-label={t("Narrative agent design details", "叙事智能体设计详情")}>
+        {showFeatured && <><h3>{featured.title}</h3>{featured.description.slice(1).map(text => <p key={text}>{text}</p>)}<h4>{t("My contribution", "我的贡献")}</h4>{featured.contributions.map(text => <p key={text}>{text}</p>)}</>}
       </section>
       <section
         className="project-collection"
@@ -52,7 +56,7 @@ export default function Projects() {
       >
         <div className="collection-heading">
           <h2 id="collection-title">
-            Explore the projects
+            {t("Explore the projects", "探索项目")}
             <span>{projects.length.toString().padStart(2, "0")}</span>
           </h2>
         </div>
@@ -60,7 +64,7 @@ export default function Projects() {
           <div
             className="filter-buttons"
             role="group"
-            aria-label="Filter projects"
+            aria-label={t("Filter projects", "筛选项目")}
           >
             {filters.map(({ key, label }) => (
               <button
@@ -69,7 +73,7 @@ export default function Projects() {
                 onClick={() => setActive(key)}
                 aria-pressed={active === key}
               >
-                {label}
+                {t(label, filterLabels[key])}
                 <span>
                   {key === "all"
                     ? projects.length
@@ -80,7 +84,7 @@ export default function Projects() {
             ))}
           </div>
           <p className="result-count" role="status">
-            {matches.length} {matches.length === 1 ? "project" : "projects"}
+            {matches.length} {t(matches.length === 1 ? "project" : "projects", "个项目")}
           </p>
         </div>
         {matches.length ? (
@@ -88,7 +92,7 @@ export default function Projects() {
             {matches.map((project) => (
               project.isGame ? (
                 <Link className="game-shortcut" key={project.title} to={`/games?project=${projectSlug(project.title)}`}>
-                  {project.title}<span aria-hidden="true">→</span>
+                  {localizeProject(project, language).title}<span aria-hidden="true">→</span>
                 </Link>
               ) : (
                 <ProjectCard project={project} key={project.title} categoryLabel={filters.find(filter => filter.key === project.category)?.label} />
@@ -97,15 +101,15 @@ export default function Projects() {
           </div>
         ) : (
           <div className="empty-state">
-            <h3>No projects found.</h3>
-            <p>Try another topic or technology.</p>
+            <h3>{t("No projects found.", "没有找到项目。")}</h3>
+            <p>{t("Try another topic or technology.", "试试其他主题或技术分类。")}</p>
             <button
               className="button primary"
               onClick={() => {
                 setActive("all");
               }}
             >
-              Clear filters
+              {t("Clear filters", "清除筛选")}
             </button>
           </div>
         )}

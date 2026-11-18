@@ -1,3 +1,5 @@
+import { useLocale } from "../i18n/locale";
+import LanguageToggle from "./LanguageToggle";
 import SocialLinks from "./SocialLinks";
 import { NavLink, Link } from "react-router-dom";
 
@@ -8,29 +10,35 @@ const navigation = [
   ["/games", "Games"],
 ];
 export function SiteHeader({ home = false }) {
+  const { t } = useLocale();
+  const labels = { Projects: "项目", Experience: "经历", Education: "教育", Games: "游戏" };
   return (
     <header className={`site-header${home ? " on-home" : ""}`}>
-      <Link to="/" className="wordmark" aria-label="YC Qiu, home">
+      <Link to="/" className="wordmark" aria-label={t("YC Qiu, home", "YC Qiu，首页")}>
         YC<span>.</span>
       </Link>
-      <nav aria-label="Main navigation">
+      <nav aria-label={t("Main navigation", "主导航")}>
         {navigation.map(([path, label]) => (
           <NavLink key={path} to={path}>
-            {label}
+            {t(label, labels[label])}
           </NavLink>
         ))}
       </nav>
+      <div className="header-actions">
       <a className="contact-link" href="mailto:yc_qiu@hotmail.com">
-        Let’s talk <span aria-hidden="true">↗</span>
+        {t("Let’s talk", "联系我")} <span aria-hidden="true">↗</span>
       </a>
+      <LanguageToggle />
+      </div>
     </header>
   );
 }
 export function SiteFooter() {
+  const { t } = useLocale();
   return (
     <footer className="site-footer">
       <p>
-        YC (Yucheng) Qiu <span>· AI, software & play.</span>
+        YC (Yucheng) Qiu <span>{t("· AI, software & play.", "· AI、软件与游戏。")}</span>
       </p>
       <SocialLinks />
     </footer>

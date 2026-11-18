@@ -1,3 +1,5 @@
+import { useLocale } from "../i18n/locale";
+import { localizeProject } from "../i18n/projects.zh";
 import { useState } from "react";
 import { RichText } from "../components/SiteLayout";
 import { ProjectImage, VideoPreview } from "../components/Media";
@@ -98,12 +100,15 @@ function ProjectLinks({ links = [] }) {
     )
   );
 }
-export default function ProjectCard({ project, categoryLabel, initialExpanded = false }) {
+export default function ProjectCard({ project: sourceProject, categoryLabel, initialExpanded = false }) {
+  const { language, t } = useLocale();
+  const project = localizeProject(sourceProject, language);
+  const categories = { "AI & machine learning": "AI 与机器学习", Games: "游戏", Coursework: "课程项目", "Game project": "游戏项目" };
   const [expanded, setExpanded] = useState(initialExpanded);
-  const id = projectSlug(project.title);
+  const id = projectSlug(sourceProject.title);
   const images = project.images || [];
   // Concept cover is separate from the original research figures in the details.
-  const cover = project.title === "Understanding Global Drivers and Barriers of AI Adoption"
+  const cover = sourceProject.title === "Understanding Global Drivers and Barriers of AI Adoption"
     ? { src: "/assets/ai_projects/ai-adoption-workflow.png", alt: "AI adoption analysis workflow: multilingual survey data, cleaning and feature engineering, classification and regression, then Tableau dashboards" }
     : images[0];
   return (
@@ -113,16 +118,16 @@ export default function ProjectCard({ project, categoryLabel, initialExpanded = 
     >
       <div className="project-cover">
         {cover ? (
-          <a className="project-cover-link" href={cover.src} target="_blank" rel="noreferrer" aria-label={`Open full image: ${cover.alt}`}><ProjectImage src={cover.src} alt={cover.alt} /></a>
-        ) : project === mealPlanner ? (
+          <a className="project-cover-link" href={cover.src} target="_blank" rel="noreferrer" aria-label={`${t("Open full image", "查看原图")}: ${cover.alt}`}><ProjectImage src={cover.src} alt={cover.alt} /></a>
+        ) : sourceProject === mealPlanner ? (
           <PlanningArt compact />
         ) : (
-          <AbstractArt project={project} />
+          <AbstractArt project={sourceProject} />
         )}
       </div>
       <div className="project-card-body">
         <div className="project-meta">
-          <span>{categoryLabel}</span>
+          <span>{t(categoryLabel, categories[categoryLabel])}</span>
           <span>{project.time || project.status}</span>
         </div>
         <h3>{project.title}</h3>
@@ -145,7 +150,7 @@ export default function ProjectCard({ project, categoryLabel, initialExpanded = 
             aria-controls={`${id}-details`}
             onClick={() => setExpanded(!expanded)}
           >
-            {expanded ? "Less detail" : "Explore project"}{" "}
+            {expanded ? t("Less detail", "收起详情") : t("Explore project", "查看项目")}{" "}
             <span aria-hidden="true">{expanded ? "−" : "+"}</span>
           </button>
           {project.links?.[0] && (
@@ -170,14 +175,14 @@ export default function ProjectCard({ project, categoryLabel, initialExpanded = 
                 {[project.type, project.location, project.team].filter(Boolean).join(" · ")}
               </p>
               <p>
-                <strong>{project.art ? "Tags:" : "Tools:"}</strong> {project.tech}
+                <strong>{project.art ? t("Tags:", "标签：") : t("Tools:", "工具：")}</strong> {project.tech}
               </p>
               {project.description.slice(1).map((text) => (
                 <p key={text}>
                   <RichText text={text} />
                 </p>
               ))}
-              <h4>{project.detailHeading || "My contribution"}</h4>
+              <h4>{project.detailHeading || t("My contribution", "我的贡献")}</h4>
               <ul>
                 {project.contributions.map((item) => (
                   <li key={item}>
@@ -193,7 +198,7 @@ export default function ProjectCard({ project, categoryLabel, initialExpanded = 
                     href={image.src}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`Open full image: ${image.alt}`}
+                    aria-label={`${t("Open full image", "查看原图")}: ${image.alt}`}
                   >
                     <ProjectImage {...image} />
                   </a>

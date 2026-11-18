@@ -1,5 +1,7 @@
+import { useLocale } from "../i18n/locale";
 import { useState } from "react";
 export function ProjectImage({ src, alt, eager = false, sizes = "(max-width: 760px) 90vw, 550px" }) {
+  const { t } = useLocale();
   const [failed, setFailed] = useState(false);
   const optimized = /^\/assets\/(game|ai_projects|board_game|work)\/.+\.png$/.test(
     src,
@@ -8,9 +10,9 @@ export function ProjectImage({ src, alt, eager = false, sizes = "(max-width: 760
     return (
       <div className="image-unavailable">
         {alt}
-        <span>Preview unavailable</span>
+        <span>{t("Preview unavailable", "预览暂不可用")}</span>
         <a href={src} target="_blank" rel="noreferrer">
-          Open original image ↗
+          {t("Open original image ↗", "查看原图 ↗")}
         </a>
       </div>
     );
@@ -41,6 +43,7 @@ export function ProjectImage({ src, alt, eager = false, sizes = "(max-width: 760
   );
 }
 export function VideoPreview({ src, title }) {
+  const { t } = useLocale();
   const [playing, setPlaying] = useState(false);
   return (
     <div className="video-block">
@@ -59,7 +62,7 @@ export function VideoPreview({ src, title }) {
               ▶
             </span>
             <span>
-              Load video demo<small>{title}</small>
+              {t("Load video demo", "播放演示视频")}<small>{title}</small>
             </span>
           </button>
         )}
@@ -70,7 +73,7 @@ export function VideoPreview({ src, title }) {
         target="_blank"
         rel="noreferrer"
       >
-        Watch on YouTube ↗
+        {t("Watch on YouTube ↗", "在 YouTube 观看 ↗")}
       </a>
     </div>
   );
