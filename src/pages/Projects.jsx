@@ -1,513 +1,318 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import SiteLayout, { RichText } from "../components/SiteLayout";
+import { ProjectImage, VideoPreview } from "../components/Media";
+import ProjectArt from "../components/ProjectArt";
+import { projects } from "../data/projects";
 
-const projectSections = [
-    { key: 'ai-ml', title: 'AI / ML Projects' },
-    { key: 'featured-game', title: 'Featured Game Projects' },
-    { key: 'coursework', title: 'Coursework Game Projects' },
+const filters = [
+  { key: "all", label: "All projects" },
+  { key: "ai-ml", label: "AI & machine learning" },
+  { key: "featured-game", label: "Games" },
+  { key: "coursework", label: "Coursework" },
 ];
-
-const projects = [
-    {
-        category: 'coursework',
-        order: 3,
-        title: 'The Legend of Zelda – Unity Remastered',
-        location: 'University of Michigan',
-        time: '2023.01 – 2023.02',
-        tech: 'Unity, C#',
-        team: 'Co-op with Varun Rajesh',
-        description: [
-            'Recreated the first dungeon of the 1986 classic with Unity, faithfully restoring the original mechanics and polishing a custom level.',
-        ],
-        contributions: [
-            'Implemented physics systems including colliders and flying weapon movement.',
-            'Built weapon arsenal: punch, arrow, boomerang, bombs, with VFX and damage detection.',
-            'Designed a custom magician boss encounter that conjures blocks within the level.',
-        ],
-        links: [
-            { label: 'Windows Build', url: 'https://drive.google.com/file/d/1A7b_m2cZcqZ39bF1ONh_RIzsAw79VxUP/view?usp=share_link' },
-            { label: 'MacOS Build', url: 'https://drive.google.com/file/d/1PG5Vv_tzdm7MxvarMfim4sAiYHWyaM3o/view?usp=share_link' },
-            { label: 'Play Online', url: 'https://yc-qiu.itch.io/zelda-dungeon-punch-man' },
-        ],
-        images: [],
-    },
-    {
-        category: 'coursework',
-        order: 2,
-        title: 'Computer Lab Simulator – VR Experience',
-        location: 'University of Michigan',
-        time: '2023.01 – 2023.02',
-        tech: 'Unreal Engine, Blueprint',
-        team: 'Co-op with Mehar Chhatwal',
-        description: [
-            'Built a VR simulator of the Bob and Betty Beyster computer lab with interactive NPCs and environmental affordances.',
-        ],
-        contributions: [
-            'Scripted interactive affordances: fire alarm, printer duplication, trash can mechanics.',
-            'Recreated the physical lab by placing and tuning assets to mirror the real space.',
-            'Authored light switch logic and ambient effects to sell the setting.',
-        ],
-        links: [
-            { label: 'Watch on YouTube', url: 'https://youtu.be/owv9_xFt0nk' },
-        ],
-        images: [],
-    },
-    {
-        category: 'featured-game',
-        order: 1,
-        title: 'Checkmate',
-        location: 'University of Michigan',
-        time: '2023.01 – 2023.04',
-        tech: 'Unity, C#',
-        team: 'Individual project',
-        description: [
-            'A roguelike strategy game built around chess spirits with evolving mechanics and tutorialized onboarding.',
-        ],
-        contributions: [
-            'Designed all 14 chess spirits with unique abilities, rewards, and progression systems.',
-            'Created a boss encounter that constrains decision time to reshape pacing.',
-            'Produced tutorial, VFX, audio, and iterative playtesting for balance and polish.',
-        ],
-        links: [
-            { label: 'Windows Build', url: 'https://drive.google.com/file/d/14tqzNZ1Ldlpyvz6C5dqTCEGjUcnQJCMt/view?usp=sharing' },
-            { label: 'MacOS Build', url: 'https://drive.google.com/file/d/16jRg5vEJ-HGKoBg1l16-PMF16YBl-q23/view?usp=sharing' },
-            { label: 'Play Online', url: 'https://yc-qiu.itch.io/checkmate' },
-        ],
-        images: [
-            { src: '/assets/game/checkmate.png', alt: 'Checkmate roguelike strategy game screenshot' },
-        ],
-    },
-    {
-        category: 'coursework',
-        order: 1,
-        title: 'Ann Arbor Go! – AR Game',
-        location: 'University of Michigan',
-        time: '2023.02 – 2023.03',
-        tech: 'Unity AR, C#',
-        team: 'Co-op with Mehar Chhatwal',
-        description: [
-            'Designed an AR exploration game inspired by Pokémon Go where players plant trees, battle squirrels, and unlock rewards across Ann Arbor.',
-        ],
-        contributions: [
-            'Built UI for landmark and “shop” pages.',
-            'Implemented AR object interactions for trees, squirrels, and collectibles.',
-            'Balanced combat loops with acorn throwing and custom chocolate power-ups.',
-        ],
-        links: [
-            { label: 'Watch on YouTube', url: 'https://www.youtube.com/watch?v=I98d0JSJ3eU' },
-        ],
-        images: [],
-    },
-    {
-        category: 'featured-game',
-        order: 2,
-        title: 'Cosmic Flux Frenzy',
-        location: 'University of Michigan',
-        time: '2023.02 – 2023.04',
-        tech: 'Unity, C#',
-        team: 'Team: Jeremy Angelo Damacino Abapo, Bilal Al-Jaibaji, Tianze You',
-        description: [
-            'Action-adventure prototype featuring a magnetic weapon system that lets players attract or repel foes throughout a space-faring journey.',
-        ],
-        contributions: [
-            'Crafted UI assets (RPG icons, maps, shop panel) and dialogue systems.',
-            'Implemented planet/level controllers, target management, and game feel tuning.',
-            'Designed motion aesthetics: space rotation, smooth acceleration, collider handling.',
-        ],
-        links: [
-            { label: 'Watch the Trailer', url: 'https://www.youtube.com/watch?v=cowJNnLBkbo' },
-        ],
-        images: [
-            { src: '/assets/game/cosmic-flux.png', alt: 'Cosmic Flux Frenzy gameplay screenshot' },
-        ],
-    },
-    {
-        category: 'featured-game',
-        order: 3,
-        title: 'VR Restaurant Simulator',
-        location: 'University of Michigan',
-        time: '2023.02 – 2023.04',
-        tech: 'Unreal Engine 5',
-        team: 'Team: Hongxiao Zheng, Yi He, Ruiying He, Mehar Chhatwal',
-        description: [
-            'A VR farming and cooking simulator that guides players from planting to selling, featuring rich interactions and cozy aesthetics.',
-        ],
-        contributions: [
-            'Created materials, 3D assets, and assembled scenes for an inviting restaurant world.',
-            'Implemented gameplay systems for growing apples, juicing, and cooking workflows.',
-            'Authored basic hand animations and interactive props.',
-        ],
-        links: [
-            { label: 'How to Play', url: 'https://www.youtube.com/watch?v=d4VxvhRjTR4' },
-            { label: 'Watch the Trailer', url: 'https://www.youtube.com/watch?v=-vm1rLNXGl0' },
-            { label: 'Product Website', url: 'https://p3-devlog.webflow.io/' },
-        ],
-        images: [
-            { src: '/assets/game/restaurant-simulator.png', alt: 'VR restaurant simulator environment' },
-        ],
-    },
-    {
-        category: 'featured-game',
-        order: 4,
-        title: "Don't Flock Up", 
-        location: 'University of Michigan',
-        time: '2024.12',
-        tech: 'Unity',
-        team: 'Game jam team: Alexander, Dallas, Tristan, Justin',
-        description: [
-            'A cooperative “Counterproductive” themed game jam entry that won the <highlight>3rd place</highlight> at U of M’s Turkey Game Jam.',
-        ],
-        contributions: [
-            'Produced interface assets, main run loop, sound effects, and sprite visuals.',
-        ],
-        links: [
-            { label: 'Windows Build', url: 'https://drive.google.com/file/d/1wa_LHYLO8CnsMDPuFeA1HMNHkBvqM5SH/view?usp=sharing' },
-        ],
-        images: [
-            { src: '/assets/game/dont-flock-up-1.png', alt: "Don't Flock Up main menu screenshot" },
-            { src: '/assets/game/dont-flock-up-2.png', alt: "Don't Flock Up cooperative gameplay screenshot" },
-        ],
-    },
-    {
-        category: 'ai-ml',
-        order: 1,
-        title: 'Understanding Global Drivers and Barriers of AI Adoption',
-        location: 'Northwestern University',
-        time: '2025 Fall',
-        tech: 'Python, Tableau, Supervised ML (Classification & Regression)',
-        team: '',
-        description: [
-            'Analyzed a multilingual survey to reveal <highlight>who adopts AI and who hesitates</highlight> across regions.',
-            'Built a full pipeline—<highlight>data cleaning, feature engineering, supervised models, Tableau dashboards</highlight>—to turn raw responses into clear signals.',
-            'Findings guide <highlight>market targeting, localization, and responsible rollout</highlight> for global AI initiatives.',
-        ],
-        contributions: [
-            'Standardized 20+ country datasets and engineered behavioral features from survey text.',
-            'Benchmarked classification and regression models to rank adoption drivers.',
-            'Delivered interactive Tableau stories summarizing readiness, barriers, and personas.',
-        ],
-        links: [],
-        images: [
-            { src: '/assets/ai_projects/ai_opinion1.png', alt: 'Global AI adoption dashboard view' },
-            { src: '/assets/ai_projects/ai_opinion2.png', alt: 'Country-level AI adoption readiness analysis' },
-        ],
-    },
-    {
-        category: 'ai-ml',
-        order: 2,
-        title: 'Robust Sentiment Analysis under Textual Perturbations',
-        location: 'Northwestern University',
-        time: '2025 Fall',
-        tech: 'Python (scikit-learn, pandas), NLP feature engineering, robustness evaluation',
-        team: '',
-        description: [
-            'Stress-tested sentiment models against <highlight>noisy / adversarial text</highlight> to mirror real feedback pipelines.',
-            'Trained <highlight>Random Forest + TF-IDF</highlight> models on IMDb & Amazon data with controlled perturbations.',
-            'Showed that lightweight defenses—<highlight>N-gram smoothing, synonym grouping, pruning</highlight>—keep accuracy stable.',
-        ],
-        contributions: [
-            'Built perturbation + evaluation pipeline (accuracy, macro-F1, robustness drop) to audit model resilience.',
-            'Produced playbook of lightweight techniques for teams needing production-ready, robust NLP.',
-        ],
-        links: [],
-        images: [],
-    },
-    {
-        category: 'ai-ml',
-        order: 3,
-        title: 'Meal Logistics Planner: AI Scheduling for Multi-Dish Cooking',
-        location: 'Northwestern University',
-        time: '2026 Winter',
-        tech: 'Python, PDDL (Fast Downward), LLM integration, planning & scheduling',
-        team: '',
-        description: [
-            'Developed an AI-powered system to automatically coordinate multi-dish cooking under resource and timing constraints.',
-            'Modeled recipes as task graphs with dependencies and resource requirements, and translated them into PDDL planning problems to generate conflict-free execution plans.',
-            'Built a full pipeline from natural language input to synchronized schedules, bottleneck resource detection, and detailed execution timelines.',
-        ],
-        contributions: [
-            'Designed symbolic planning framework ensuring all dishes finish simultaneously without resource conflicts.',
-            'Implemented PDDL-based planner with fallback scheduling for robustness.',
-            'Built interactive web interface with an LLM agent for custom kitchen and recipe generation.',
-            'Delivered end-to-end system from natural language input to planning and executable schedule.',
-        ],
-        links: [
-            { label: 'GitHub Repository', url: 'https://github.com/weicheng998/371-meal-logistics-planner' },
-            { label: 'Project Poster', url: 'https://drive.google.com/file/d/1F5NqtPl5cbXQWFZAe2xmjbLqB-rCn1wc/view?usp=sharing' },
-        ],
-        images: [],
-        videos: [
-            {
-                src: 'https://www.youtube.com/embed/fOl1YRtSIp4',
-                title: 'Meal Logistics Planner demo',
-            },
-        ],
-    },
-];
-
-const containerVariants = {
-    hidden: { opacity: 0, y: 28 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.55,
-            ease: 'easeOut',
-            when: 'beforeChildren',
-            staggerChildren: 0.12,
-        },
-    },
-};
-
-const headerVariants = {
-    hidden: { opacity: 0, y: 14 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
-};
-
-const sectionVariants = {
-    hidden: { opacity: 0, y: 26 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, ease: 'easeOut', staggerChildren: 0.1, delayChildren: 0.05 },
-    },
-};
-
-const listVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.08, delayChildren: 0.05 },
-    },
-};
-
-const cardVariants = {
-    hidden: { opacity: 0, y: 32, scale: 0.96 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: { duration: 0.45, ease: 'easeOut' },
-    },
-};
-
-function ProjectCard({ project }) {
-    const imageList = Array.isArray(project.images)
-        ? project.images.filter(Boolean)
-        : typeof project.image === 'string' && project.image.trim().length > 0
-            ? [{ src: project.image, alt: project.imageAlt || project.title }]
-            : [];
-    const videoList = Array.isArray(project.videos)
-        ? project.videos.filter((video) => video?.src)
-        : [];
-
-    const renderParagraph = (paragraph, idx) => {
-        const highlightPattern = /<highlight>(.*?)<\/highlight>/g;
-        if (!highlightPattern.test(paragraph)) {
-            return <>{paragraph}</>;
-        }
-        const parts = paragraph.split(/<highlight>|<\/highlight>/);
-        return parts.map((part, i) =>
-            i % 2 === 1 ? (
-                <span key={`${idx}-hl-${i}`} className="oxanium font-semibold tracking-tight">
-                    {part}
-                </span>
-            ) : (
-                part
-            )
-        );
-    };
-
-    return (
-        <motion.div
-            className="bg-white/10 text-white rounded-2xl shadow-lg backdrop-blur-sm border border-white/20 hover:ring-4 hover:ring-yellow-300/60 hover:ring-inset transition-all"
-            variants={cardVariants}
-        >
-            <div className="px-[40px] py-[12px]">
-                <h2 className="oxanium text-4xl font-bold">{project.title}</h2>
-
-                <div className="mt-1 text-sm text-gray-300 flex justify-between">
-                    <span className="orbitron italic text-white/90">{project.location}</span>
-                    <span className="bungee">{project.time}</span>
-                </div>
-
-                <div className="mt-1 text-sm text-gray-300 flex flex-wrap justify-between gap-y-1">
-                    <span className="text-white/80"><strong>Tech:</strong> {project.tech}</span>
-                    {project.team && <span className="italic text-right">{project.team}</span>}
-                </div>
-
-                <div className="mt-1 flex flex-col gap-1 project-tight">
-                    {project.description?.map((paragraph, idx) => (
-                        <p key={idx} className="text-white/90 leading-tight">
-                            {renderParagraph(paragraph, idx)}
-                        </p>
-                    ))}
-                </div>
-
-                {project.contributions?.length > 0 && (
-                    <div className="mt-3 space-y-1.5">
-                        {project.contributions.map((item, idx) => (
-                            <div key={idx} className="text-sm text-white/90 leading-tight flex gap-2">
-                                <span className="text-[#213547]">• &nbsp;</span>
-                                <span className="flex-1">{item}</span>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {project.links?.length > 0 && (
-                    <div className="mt-4 flex flex-col gap-1 italic text-[#3dbae3]">
-                        {project.links.map(({ label, url }) => (
-                            <a
-                                key={label}
-                                href={url}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="no-visited hover:text-[#fcd34d] underline underline-offset-4 decoration-dotted"
-                            >
-                                {label}
-                            </a>
-                        ))}
-                    </div>
-                )}
-
-                {imageList.length > 0 || videoList.length > 0 ? (
-                    <div className="mt-4 flex flex-wrap justify-center gap-4">
-                        {imageList.map(({ src, alt }, idx) => (
-                            <figure
-                                key={`${project.title}-img-${idx}`}
-                                className="w-[500px] sm:w-[500px] rounded-[10px] bg-black/30 overflow-hidden"
-                            >
-                                <img
-                                    src={src}
-                                    alt={alt || project.title}
-                                    className="w-full object-contain rounded-[10px]"
-                                    loading="lazy"
-                                />
-                            </figure>
-                        ))}
-                        {videoList.map(({ src, title }, idx) => (
-                            <figure
-                                key={`${project.title}-video-${idx}`}
-                                className="w-[500px] sm:w-[500px] rounded-[10px] bg-black/30 overflow-hidden"
-                            >
-                                <div className="relative w-full pt-[56.25%]">
-                                    <iframe
-                                        src={src}
-                                        title={title || `${project.title} video ${idx + 1}`}
-                                        className="absolute inset-0 h-full w-full rounded-[10px]"
-                                        loading="lazy"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerPolicy="strict-origin-when-cross-origin"
-                                        allowFullScreen
-                                    />
-                                </div>
-                            </figure>
-                        ))}
-                    </div>
-                ) : null}
-            </div>
-        </motion.div>
-    );
+const categoryName = (key) =>
+  filters.find((filter) => filter.key === key)?.label;
+const mealPlanner = projects.find((project) =>
+  project.title.startsWith("Meal Logistics Planner"),
+);
+const slug = (title) =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-$/, "");
+function PlanningArt({ compact = false }) {
+  return (
+    <div
+      className={`planning-art${compact ? " compact-art" : ""}`}
+      aria-label="Illustration of recipes becoming a coordinated cooking plan"
+      role="img"
+    >
+      <div className="art-topline">
+        <span className="live-dot" /> MEAL LOGISTICS <span>01 / PLANNING</span>
+      </div>
+      <div className="planning-caption">
+        A little order.
+        <br />
+        <em>A better dinner.</em>
+      </div>
+      <div className="plan-tracks">
+        <div>
+          <span>PREPARE</span>
+          <i />
+          <i />
+        </div>
+        <div>
+          <span>COOK</span>
+          <i />
+          <i />
+        </div>
+        <div>
+          <span>SERVE</span>
+          <i />
+        </div>
+      </div>
+      <div className="art-bottomline">
+        Recipes → Resources → Schedule <span>↗</span>
+      </div>
+    </div>
+  );
 }
-
-export default function Projects() {
-    const backgroundSrc = '/assets/images/empty_bg.png';
-    const [bgLoaded, setBgLoaded] = React.useState(false);
-
-    React.useEffect(() => {
-        const img = new Image();
-        img.src = backgroundSrc;
-
-        const handleReady = () => setBgLoaded(true);
-        if (img.complete) {
-            setBgLoaded(true);
-        } else {
-            img.addEventListener('load', handleReady);
-            img.addEventListener('error', handleReady);
-        }
-
-        return () => {
-            img.removeEventListener('load', handleReady);
-            img.removeEventListener('error', handleReady);
-        };
-    }, [backgroundSrc]);
-
-    if (!bgLoaded) {
-        return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-                <div className="h-16 w-16 rounded-full border-4 border-[#3dbae3]/40 border-t-[#fcd34d] animate-spin" />
-                <p className="mt-5 uppercase tracking-[0.35em] text-sm text-white/70">loading</p>
-            </div>
-        );
-    }
-
-    return (
-        <motion.div
-            className="min-h-screen bg-black text-white p-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-        >
-            <motion.div
-                className="min-h-screen w-full text-white bg-cover bg-center bg-no-repeat bg-fixed px-4 pt-6"
-                style={{
-                    backgroundImage: `url('${backgroundSrc}')`,
-                    backgroundColor: '#000',
-                }}
+function AbstractArt({ project }) {
+  if (project.art) return <ProjectArt kind={project.art} />;
+  const isNlp = project.title.includes("Sentiment");
+  return (
+    <div
+      className={`abstract-art ${isNlp ? "nlp-art" : "game-art"}`}
+      aria-hidden="true"
+    >
+      <span>
+        {isNlp ? "LANGUAGE / DOMAIN SHIFT" : "INTERACTIVE / EXPLORATION"}
+      </span>
+      <div>
+        {isNlp ? (
+          <>
+            <b>Domains change.</b>
+            <em>Can models transfer?</em>
+          </>
+        ) : (
+          <>
+            <b>
+              {project.title.includes("Zelda")
+                ? "PLAY"
+                : project.title.includes("AR Game")
+                  ? "EXPLORE"
+                  : "IMMERSE"}
+            </b>
+            <em>{project.tech.split(",")[0]}</em>
+          </>
+        )}
+      </div>
+      <span>
+        {isNlp
+          ? "Text → Features → Predictions"
+          : "An experiment in how we play"}{" "}
+        <span>↗</span>
+      </span>
+    </div>
+  );
+}
+function ProjectLinks({ links = [] }) {
+  return (
+    links.length > 0 && (
+      <div className="project-links">
+        {links.map(({ label, url }) => (
+          <a key={url} href={url} target="_blank" rel="noreferrer">
+            {label} <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    )
+  );
+}
+function ProjectCard({ project }) {
+  const [expanded, setExpanded] = useState(false);
+  const id = slug(project.title);
+  const images = project.images || [];
+  // Concept cover is separate from the original research figures in the details.
+  const cover = project.title === "Understanding Global Drivers and Barriers of AI Adoption"
+    ? { src: "/assets/ai_projects/ai-adoption-workflow.png", alt: "AI adoption analysis workflow: multilingual survey data, cleaning and feature engineering, classification and regression, then Tableau dashboards" }
+    : images[0];
+  return (
+    <article
+      className={`project-card${expanded ? " is-expanded" : ""}`}
+      id={id}
+    >
+      <div className="project-cover">
+        {cover ? (
+          <a className="project-cover-link" href={cover.src} target="_blank" rel="noreferrer" aria-label={`Open full image: ${cover.alt}`}><ProjectImage src={cover.src} alt={cover.alt} /></a>
+        ) : project === mealPlanner ? (
+          <PlanningArt compact />
+        ) : (
+          <AbstractArt project={project} />
+        )}
+      </div>
+      <div className="project-card-body">
+        <div className="project-meta">
+          <span>{categoryName(project.category)}</span>
+          <span>{project.time || project.status}</span>
+        </div>
+        <h3>{project.title}</h3>
+        <p className="project-summary">
+          <RichText text={project.description[0]} />
+        </p>
+        <div className="tech-tags">
+          {project.tech
+            .split(/,(?![^()]*\))/)
+            .slice(0, project.art ? undefined : 3)
+            .map((tech) => (
+              <span key={tech}>{tech.trim()}</span>
+            ))}
+        </div>
+        <div className="project-card-actions">
+          <button
+            type="button"
+            className="text-button"
+            aria-expanded={expanded}
+            aria-controls={`${id}-details`}
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? "Less detail" : "Explore project"}{" "}
+            <span aria-hidden="true">{expanded ? "−" : "+"}</span>
+          </button>
+          {project.links?.[0] && (
+            <a
+              className="project-quick-link"
+              href={project.links[0].url}
+              target="_blank"
+              rel="noreferrer"
             >
-                <motion.div
-                    className="max-w-5xl mx-auto space-y-14 pt-4 px-4 project-tight"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.div variants={headerVariants} className="w-fit">
-                        <Link
-                            to="/"
-                            className="no-visited text-white text-xl px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg backdrop-blur-sm w-fit inline-flex items-center justify-center shadow-md transition"
-                            title="Back to Home"
-                            style={{ marginTop: '24px', marginLeft: '24px' }}
-                        >
-                            <i className="fas fa-arrow-left fa-3x leading-none !text-[#213547] hover:!text-[#213547] visited:!text-[#213547] focus:!text-[#213547] active:!text-[#213547] p-2"></i>
-                        </Link>
-                    </motion.div>
-
-                    <motion.h1 variants={headerVariants} className="orbitron text-5xl font-bold text-center text-white">
-                        Projects 👨‍💻
-                    </motion.h1>
-                    <div className="space-y-14 project-tight">
-                        {projectSections.map(({ key, title }) => {
-                            const items = projects
-                                .filter((proj) => proj.category === key)
-                                .sort((a, b) => a.order - b.order);
-
-                            if (items.length === 0) return null;
-
-                            return (
-                                <motion.section key={key} className="space-y-8" variants={sectionVariants}>
-                                    <motion.h2
-                                        variants={headerVariants}
-                                        className="orbitron text-5xl font-bold text-[#213547] text-center mt-16 mb-12"
-                                    >
-                                        {title}
-                                    </motion.h2>
-                                    <motion.div className="space-y-6" variants={listVariants}>
-                                        {items.map((project) => (
-                                            <ProjectCard
-                                                key={project.title}
-                                                project={project}
-                                            />
-                                        ))}
-                                    </motion.div>
-                                </motion.section>
-                            );
-                        })}
-                    </div>
-                </motion.div>
-            </motion.div>
-        </motion.div>
+              {project.links[0].label} ↗
+            </a>
+          )}
+        </div>
+        <div
+          className="project-details"
+          id={`${id}-details`}
+          hidden={!expanded}
+        >
+          {expanded && (
+            <>
+              <p className="detail-label">
+                {[project.type, project.location, project.team].filter(Boolean).join(" · ")}
+              </p>
+              <p>
+                <strong>{project.art ? "Tags:" : "Tools:"}</strong> {project.tech}
+              </p>
+              {project.description.slice(1).map((text) => (
+                <p key={text}>
+                  <RichText text={text} />
+                </p>
+              ))}
+              <h4>{project.detailHeading || "My contribution"}</h4>
+              <ul>
+                {project.contributions.map((item) => (
+                  <li key={item}>
+                    <RichText text={item} />
+                  </li>
+                ))}
+              </ul>
+              <ProjectLinks links={project.links} />
+              <div className="detail-media">
+                {images.map((image) => (
+                  <a
+                    key={image.src}
+                    href={image.src}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open full image: ${image.alt}`}
+                  >
+                    <ProjectImage {...image} />
+                  </a>
+                ))}
+                {project.videos?.map((video) => (
+                  <VideoPreview key={video.src} {...video} />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}
+export default function Projects() {
+  const [active, setActive] = useState("all");
+  const [showFeatured, setShowFeatured] = useState(false);
+  const featured = projects.find(project => project.art === "narrative");
+  const matches = projects
+    .filter((project) => active === "all" || project.category === active)
+    .sort(
+      (a, b) =>
+        filters.findIndex((item) => item.key === a.category) -
+          filters.findIndex((item) => item.key === b.category) ||
+        b.order - a.order,
     );
+  return (
+    <SiteLayout
+      eyebrow="Selected work / experiments & explorations"
+      title="Projects"
+      intro="From AI that plans dinner to games that bend the rules. A collection of things I’ve designed, built, and learned from."
+    >
+      <section className="featured-project" aria-labelledby="featured-title">
+        <div className="featured-copy">
+          <p className="eyebrow"><span className="live-dot" /> FEATURED · NARRATIVE AGENTS</p>
+          <h2 id="featured-title">Narrative AI<br />Agent</h2>
+          <p>{featured.description[0]}</p>
+          <div className="tech-tags"><span>Tool calling</span><span>Story state</span><span>Interactive fiction</span></div>
+          <div className="featured-actions">
+            <button className="button primary" onClick={() => setShowFeatured(!showFeatured)} aria-expanded={showFeatured} aria-controls="featured-story-details">{showFeatured ? "Close project −" : "Explore the design +"}</button>
+          </div>
+          <span className="featured-footnote">Independent course project · System design and evaluation plan</span>
+        </div>
+        <ProjectArt kind="narrative" />
+      </section>
+      <section id="featured-story-details" className="featured-story-details" hidden={!showFeatured} aria-label="Narrative agent design details">
+        {showFeatured && <><h3>{featured.title}</h3>{featured.description.slice(1).map(text => <p key={text}>{text}</p>)}<h4>My contribution</h4>{featured.contributions.map(text => <p key={text}>{text}</p>)}</>}
+      </section>
+      <section
+        className="project-collection"
+        aria-labelledby="collection-title"
+      >
+        <div className="collection-heading">
+          <h2 id="collection-title">
+            Explore the projects
+            <span>{projects.length.toString().padStart(2, "0")}</span>
+          </h2>
+        </div>
+        <div className="filter-row">
+          <div
+            className="filter-buttons"
+            role="group"
+            aria-label="Filter projects"
+          >
+            {filters.map(({ key, label }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setActive(key)}
+                aria-pressed={active === key}
+              >
+                {label}
+                <span>
+                  {key === "all"
+                    ? projects.length
+                    : projects.filter((project) => project.category === key)
+                        .length}
+                </span>
+              </button>
+            ))}
+          </div>
+          <p className="result-count" role="status">
+            {matches.length} {matches.length === 1 ? "project" : "projects"}
+          </p>
+        </div>
+        {matches.length ? (
+          <div className="project-grid" key={active}>
+            {matches.map((project) => (
+              <ProjectCard project={project} key={project.title} />
+            ))}
+          </div>
+        ) : (
+          <div className="empty-state">
+            <h3>No projects found.</h3>
+            <p>Try another topic or technology.</p>
+            <button
+              className="button primary"
+              onClick={() => {
+                setActive("all");
+              }}
+            >
+              Clear filters
+            </button>
+          </div>
+        )}
+      </section>
+
+    </SiteLayout>
+  );
 }

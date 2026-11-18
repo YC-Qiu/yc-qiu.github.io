@@ -4,7 +4,8 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist'] },
+  // Old contains the archived pre-React site and vendored scripts.
+  { ignores: ['dist/**', 'Old/**'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {

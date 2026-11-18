@@ -1,0 +1,5 @@
+Mode: built-in image_gen edit.
+Input: public/assets/images/home-cartoon-v3.png
+Output: public/assets/images/home-cartoon-clean-v4.png, with desktop and mobile WebP derivatives.
+Prompt:
+Edit this background image. Remove ALL objects along the bottom: game controller on bottom left, both dice, puzzle pieces, chess knight, chess pawn, and their nearby decorative motion marks. Fill those removed areas seamlessly with the existing very pale ice blue flat background. Preserve the small colorful geometric doodles along the far left and right vertical edges, and preserve the existing empty center, color palette, landscape aspect ratio and 2D style. No new objects, text, shading or 3D. Result must have NO dice, chess pieces, puzzle pieces or game controllers anywhere.

@@ -1,0 +1,10 @@
+Tool: built-in image_gen (generation followed by a targeted edit).
+Final asset: public/assets/ai_projects/ai-adoption-cover.png
+Web delivery: ai-adoption-cover.webp (1440px) and ai-adoption-cover-mobile.webp (720px).
+Conceptual illustration only; no research findings are encoded. Original charts remain in project details.
+
+Initial prompt:
+Create a polished editorial illustration as a landscape 1.9:1 portfolio project cover for 'Understanding Global Drivers and Barriers of AI Adoption'. Warm ivory paper background, deep ink navy, muted teal, restrained golden ochre accents, subtle print grain, sophisticated playful cut-paper illustration with crisp silhouettes. Main composition: an elegant simplified globe in the center, small diverse human figures around it interacting with abstract AI spark / neural node motifs; some connections form open bridges while others encounter small symbolic gates, expressing access, trust, curiosity and hesitation across regions. Balanced, legible at small card size, uncluttered, generous breathing room, main elements safe inside central 80 percent for responsive framing. Conceptual illustration only, not a chart or factual map: no geographic labels, no national flags, no data, no percentages, no axes, no research claims. No text, no letters, no logos, no watermarks. Avoid generic glowing sci-fi brains, robot faces, photorealism and dense network spaghetti. Output a finished beautiful wide cover image, not a webpage or mockup.
+
+Final edit prompt:
+Edit this illustration: remove ALL title text at the top and remove the golden underline beneath the title. Fill that area with the same warm paper texture and rebalance the globe and people upward so the whole image is a balanced, wide editorial illustration with no large empty header area. Keep the same cut-paper style, globe, diverse people, bridges and gates, navy/teal/gold palette. Absolutely no text, letters, captions, titles, numbers, logos or watermark anywhere. Landscape portfolio card cover, roughly 1.9:1. Preserve the artwork's quality and friendly character.

@@ -1,0 +1,62 @@
+[
+  {
+    "source": "public\\assets\\game\\checkmate.png",
+    "original": 649254,
+    "webp": 63658,
+    "mobile": 26850
+  },
+  {
+    "source": "public\\assets\\game\\cosmic-flux.png",
+    "original": 848352,
+    "webp": 71534,
+    "mobile": 29214
+  },
+  {
+    "source": "public\\assets\\game\\dont-flock-up-1.png",
+    "original": 914839,
+    "webp": 58248,
+    "mobile": 22992
+  },
+  {
+    "source": "public\\assets\\game\\dont-flock-up-2.png",
+    "original": 3264604,
+    "webp": 91424,
+    "mobile": 31006
+  },
+  {
+    "source": "public\\assets\\game\\restaurant-simulator.png",
+    "original": 92447,
+    "webp": 85610,
+    "mobile": 27366
+  },
+  {
+    "source": "public\\assets\\ai_projects\\ai_opinion1.png",
+    "original": 240872,
+    "webp": 30390,
+    "mobile": 12142
+  },
+  {
+    "source": "public\\assets\\ai_projects\\ai_opinion2.png",
+    "original": 550359,
+    "webp": 32114,
+    "mobile": 12394
+  },
+  {
+    "source": "public\\assets\\board_game\\asmodeuswhisper.png",
+    "original": 2366582,
+    "webp": 77632,
+    "mobile": 22728
+  },
+  {
+    "source": "public\\assets\\board_game\\dreamleague1.png",
+    "original": 3130297,
+    "webp": 134494,
+    "mobile": 41824
+  },
+  {
+    "source": "public\\assets\\board_game\\schrodinger.png",
+    "original": 2981722,
+    "webp": 206184,
+    "mobile": 59366
+  }
+]
