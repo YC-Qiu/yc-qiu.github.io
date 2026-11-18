@@ -56,7 +56,7 @@ export const projectTranslations = {
     contributions: ["清洗交互日志、过滤过短交互，并在导出前校验应用与类别的映射。", "构建用户每日特征表，使用轮廓系数、Davies–Bouldin 和 Calinski–Harabasz 分数比较聚类方法。", "导出聚类画像与特征摘要，为结果解释和后续推荐设计提供支持。"],
   },
   "Abbott — AI Knowledge Assistant": {
-    title: "Abbott · AI 知识助手", type: "企业合作毕业项目 · 方案设计", status: "方案设计", tech: "企业 AI, 知识检索, 访问控制, 产品设计",
+    title: "雅培 · AI 知识助手", type: "企业合作毕业项目 · 方案设计", status: "方案设计", tech: "企业 AI, 知识检索, 访问控制, 产品设计",
     description: ["设计企业 AI 助手方案，帮助团队检索内部知识、完成多步骤工作流，同时遵守敏感信息的访问权限。", "内部助手不仅要找到相关文档，还要尊重访问权限、引导用户查阅正确来源，并适应现有工作方式。项目比较了三条路线：独立助手、共享知识服务，以及引导多步骤工作流的智能体。"],
     contributions: ["我负责方案设计，比较三种路线并将利益相关方的需求转化为设计标准。重点关注用户如何核对答案来源、权限限制如何贯穿工作流，以及哪些方案值得进入原型阶段。"],
   },
@@ -76,7 +76,7 @@ export const projectTranslations = {
     contributions: ["我负责本地训练、检查点管理、适配器导出，以及迷宫和诊断任务上的策略评估。队友负责 Colab 迁移评估，并协助排查接口与依赖问题。"],
   },
 };
-const locations = { "University of Michigan": "密歇根大学", "Northwestern University": "西北大学" };
+const locations = { "Abbott": "雅培", "University of Michigan": "密歇根大学", "Northwestern University": "西北大学" };
 const linkLabels = { "Windows Build": "Windows 下载", "MacOS Build": "macOS 下载", "Play Online": "在线游玩", "Watch on YouTube": "在 YouTube 观看", "Watch the Trailer": "观看预告片", "How to Play": "玩法介绍", "Product Website": "项目网站", "GitHub Repository": "GitHub 仓库", "Project Poster": "项目海报" };
 export function localizeProject(project, language) {
   if (language !== "zh") return project;

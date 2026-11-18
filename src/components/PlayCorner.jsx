@@ -26,7 +26,7 @@ export default function PlayCorner() {
       if (!buttons?.length) return;
       const button = buttons[Math.floor(Math.random() * buttons.length)];
       if (button.getAttribute("aria-disabled") !== "true") button.click();
-    }, 10_000);
+    }, 5_000);
     return () => window.clearInterval(autoPlayTimer);
   }, []);
   useEffect(() => () => clearTimeout(rollTimer.current), []);
