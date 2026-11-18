@@ -5,7 +5,7 @@ const sections = [
   ["Education", "education", "/education"],
   ["Projects", "projects", "/projects"],
   ["Work", "work", "/work"],
-  ["Board Game", "board-game", "/board-game"],
+  ["Games", "board-game", "/games"],
 ];
 export default function Home() {
   return (

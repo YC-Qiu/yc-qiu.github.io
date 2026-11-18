@@ -5,7 +5,7 @@ const navigation = [
   ["/projects", "Projects"],
   ["/work", "Experience"],
   ["/education", "Education"],
-  ["/board-game", "Board games"],
+  ["/games", "Games"],
 ];
 export function SiteHeader({ home = false }) {
   return (

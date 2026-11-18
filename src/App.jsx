@@ -1,5 +1,5 @@
 import { Component, Suspense, lazy, useEffect } from "react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, Link, useLocation } from "react-router-dom";
 import { SiteHeader, SiteFooter } from "./components/SiteLayout";
 
 import Home from "./pages/Home";
@@ -13,7 +13,7 @@ const titles = {
   "/projects": "Projects — YC Qiu",
   "/work": "Experience — YC Qiu",
   "/education": "Education — YC Qiu",
-  "/board-game": "Board Games — YC Qiu",
+  "/games": "Games — YC Qiu",
 };
 class PageErrorBoundary extends Component {
   state = { failed: false };
@@ -89,7 +89,8 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/work" element={<Work />} />
             <Route path="/education" element={<Education />} />
-            <Route path="/board-game" element={<BoardGame />} />
+            <Route path="/games" element={<BoardGame />} />
+            <Route path="/board-game" element={<Navigate to="/games" replace />} />
             <Route
               path="*"
               element={

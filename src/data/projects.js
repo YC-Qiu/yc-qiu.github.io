@@ -3,6 +3,7 @@ import { additionalProjects } from "./additionalProjects.js";
 export const projects = [
   {
     category: "coursework",
+    isGame: true,
     order: 3,
     title: "The Legend of Zelda – Unity Remastered",
     location: "University of Michigan",
@@ -35,6 +36,7 @@ export const projects = [
   },
   {
     category: "coursework",
+    isGame: true,
     order: 2,
     title: "Computer Lab Simulator – VR Experience",
     location: "University of Michigan",
@@ -54,6 +56,7 @@ export const projects = [
   },
   {
     category: "featured-game",
+    isGame: true,
     order: 1,
     title: "Checkmate",
     location: "University of Michigan",
@@ -88,6 +91,7 @@ export const projects = [
   },
   {
     category: "coursework",
+    isGame: true,
     order: 1,
     title: "Ann Arbor Go! – AR Game",
     location: "University of Michigan",
@@ -112,6 +116,7 @@ export const projects = [
   },
   {
     category: "featured-game",
+    isGame: true,
     order: 2,
     title: "Cosmic Flux Frenzy",
     location: "University of Michigan",
@@ -141,6 +146,7 @@ export const projects = [
   },
   {
     category: "featured-game",
+    isGame: true,
     order: 3,
     title: "VR Restaurant Simulator",
     location: "University of Michigan",
@@ -175,6 +181,7 @@ export const projects = [
   },
   {
     category: "featured-game",
+    isGame: true,
     order: 4,
     title: "Don't Flock Up",
     location: "University of Michigan",
