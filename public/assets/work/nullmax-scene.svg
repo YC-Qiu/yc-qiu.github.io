@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" fill="none">
+  <title>Nullmax — making driving data visible</title>
+  <desc>Conceptual THREE.js driving-data scene. A perspective road contains obstacle boxes and a curved trajectory with automatic view framing. This is a visualization illustration, not driving-system output.</desc>
+  <defs>
+    <linearGradient id="night" x2="1" y2="1"><stop stop-color="#101e30"/><stop offset="1" stop-color="#172f41"/></linearGradient>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1b3a49" stop-opacity=".2"/><stop offset="1" stop-color="#244b5a" stop-opacity=".8"/></linearGradient>
+    <linearGradient id="trail" x1="0" y1="1" x2=".5" y2="0"><stop stop-color="#61edc7"/><stop offset="1" stop-color="#61edc7" stop-opacity=".15"/></linearGradient>
+  </defs>
+  <rect width="1200" height="680" rx="20" fill="url(#night)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="50" y="57" fill="#85bbb9" font-size="17" letter-spacing="3">NULLMAX / SPATIAL DATA</text>
+    <text x="50" y="124" fill="#edf7f7" font-size="50" font-weight="700">Make the scene readable.</text>
+    <text x="52" y="166" fill="#9fb8c7" font-size="22">Obstacles, trajectories, and a view that follows.</text>
+    <path d="M0 295h1200" stroke="#2a4353"/>
+    <path d="M0 602 506 271h168l526 331" fill="url(#road)"/>
+    <g stroke="#315262" opacity=".6">
+      <path d="M0 367h1200M0 410h1200M0 468h1200M0 544h1200M0 602h1200"/>
+      <path d="M0 588 487 271M198 602 531 271M448 602 575 271M713 602 619 271M978 602 662 271M1200 583 705 271"/>
+    </g>
+    <path d="M287 602 550 279M875 602 641 279" stroke="#9bbfc5" stroke-width="3" opacity=".7"/>
+    <path d="m577 602 19-323" stroke="#c5d7d7" stroke-width="3" stroke-dasharray="21 19" opacity=".55"/>
+    <path d="M586 578c-9-70 140-94 119-155-16-46-90-62-105-133" stroke="#4cc7a9" stroke-width="34" opacity=".09"/>
+    <path d="M586 578c-9-70 140-94 119-155-16-46-90-62-105-133" stroke="url(#trail)" stroke-width="5" stroke-linecap="round"/>
+
+    <g stroke="#edae70" stroke-width="2">
+      <path d="m409 425 58-36h72l-48 36z" fill="#d6955c" fill-opacity=".19"/>
+      <path d="M409 425h82v70h-82z" fill="#d6955c" fill-opacity=".1"/>
+      <path d="m491 425 48-36v63l-48 43z" fill="#d6955c" fill-opacity=".23"/>
+      <path d="M467 389v63h72m-130 43 58-43" stroke-dasharray="5 5" opacity=".5"/>
+      <path d="m698 340 26-18h47l-23 18z" fill="#d6955c" fill-opacity=".2"/>
+      <path d="M698 340h50v41h-50zm50 0 23-18v40l-23 19" fill="#d6955c" fill-opacity=".12"/>
+    </g>
+    <g stroke="#a3e8e0" stroke-width="2">
+      <path d="m552 533 20-34h38l23 34-3 40h-76z" fill="#284f5b"/>
+      <path d="m563 531 13-23h30l15 23z" fill="#739ca5" fill-opacity=".4"/>
+      <path d="M561 555h65m-71 11h12m47 0h12"/>
+    </g>
+
+    <g stroke="#6d9bac" stroke-width="2" opacity=".9">
+      <path d="M349 355v-30h36m401 0h36v30M349 549v30h36m401 0h36v-30"/>
+    </g>
+    <text x="842" y="581" fill="#90bbca" font-size="17">Adaptive framing</text>
+    <path d="M491 425 330 343H207" stroke="#e0a16b" stroke-width="1.5"/>
+    <text x="73" y="320" fill="#efbb89" font-size="23">Obstacle geometry</text>
+    <text x="73" y="347" fill="#98b0bf" font-size="17">Client-side visualization</text>
+    <path d="M706 429h133l39-36h265" stroke="#64c4b1" stroke-width="1.5"/>
+    <text x="877" y="367" fill="#8ce5cf" font-size="23">Trajectory view</text>
+    <text x="877" y="393" fill="#98b0bf" font-size="17">Foxglove-based tooling</text>
+    <rect x="0" y="614" width="1200" height="66" rx="0" fill="#102231"/>
+    <text x="50" y="654" fill="#abc5cd" font-size="18">THREE.js</text>
+    <path d="M164 637v20" stroke="#45606e"/>
+    <text x="190" y="654" fill="#abc5cd" font-size="18">3D SCENE EXPLORATION</text>
+    <text x="861" y="654" fill="#7897a7" font-size="16">ILLUSTRATIVE SCENE / NOT LIVE DATA</text>
+  </g>
+</svg>

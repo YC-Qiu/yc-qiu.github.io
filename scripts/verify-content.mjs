@@ -15,8 +15,11 @@ for (const [page, name, data] of groups) {
   // Compare all other content exactly; allow only its explicitly revised copy.
   const revisedFields = ['title', 'tech', 'description', 'contributions'];
   const normalize = (entries) => entries.map((entry) => {
-    if (name !== 'projects' || entry.category !== 'ai-ml' || entry.order !== 2) return entry;
-    return Object.fromEntries(Object.entries(entry).filter(([key]) => !revisedFields.includes(key)));
+    if (name !== 'projects') return entry;
+    // Game routing metadata was added when games moved to their own page.
+    return Object.fromEntries(Object.entries(entry).filter(([key]) =>
+      key !== 'isGame' && !(entry.category === 'ai-ml' && entry.order === 2 && revisedFields.includes(key))
+    ));
   });
   const preserved = name === 'projects' ? data.slice(0, baseline.length) : data;
   assert.equal(JSON.stringify(normalize(preserved)), JSON.stringify(normalize(baseline)), `${name}: original content preserved outside owner-approved copy edits`);
@@ -26,13 +29,14 @@ for (const [page, name, data] of groups) {
     assert.ok(existsSync(`public${image.src.replace('.png','-mobile.webp')}`));
   }
 }
-assert.equal(projects.length,14);
+assert.equal(projects.length,15);
+assert.ok(projects.some(p => p.art === 'context' && p.links.some(link => link.url === 'https://github.com/YC-Qiu/context-aware-user-recommendation')));
 for (const title of ['Abbott — AI Knowledge Assistant', 'Narrative Agent for Interactive Fiction', 'Multi-View Football Foul Detection', 'Taking a Detour to Win: Strategic Blocking in LLM Agents']) assert.ok(projects.some(p => p.title === title));
 assert.equal(projects.find(p => p.category === 'ai-ml' && p.order === 2).title, 'Cross-Domain Sentiment Analysis without Fine-Tuning');
-assert.deepEqual(['ai-ml','featured-game','coursework'].map(category=>projects.filter(p=>p.category===category).length),[7,4,3]);
+assert.deepEqual(['ai-ml','featured-game','coursework'].map(category=>projects.filter(p=>p.category===category).length),[8,4,3]);
 const built = readdirSync('dist/assets');
 for(const page of ['Projects','Education','Work','BoardGame']) assert.ok(built.some(name=>name.startsWith(page+'-')&&name.endsWith('.js')));
 assert.ok(!readFileSync('dist/index.html','utf8').includes('/src/assets'));
 const main = readFileSync('dist/assets/'+built.find(name=>/^index-.*\.js$/.test(name)),'utf8');
 assert.ok(!main.includes('Standardized 20+ country datasets'));
-console.log('PASS: original data outside owner-approved copy edits, 14 projects, category counts, all image variants, four route chunks, no project copy in entry bundle.');
+console.log('PASS: original data outside owner-approved copy edits, 15 projects, category counts, all image variants, four route chunks, no project copy in entry bundle.');

@@ -1,5 +1,6 @@
 // Lightweight conceptual illustrations, not screenshots or measured trajectories.
 const captions = {
+  context: ['BEHAVIOR / IN CONTEXT', 'Every day has a pattern.', 'Conceptual app-usage rhythms grouped into behavioral contexts for future food recommendations. Illustrative patterns, not measured results.'],
   knowledge: ['KNOWLEDGE / WITH BOUNDARIES', 'The right answer. The right access.', 'Concept: permitted sources feed a cited answer inside an access boundary.'],
   narrative: ['NARRATIVE / WITH MEMORY', 'A story that remembers.', 'Concept: player choices pass through validation before changing persistent story state.'],
   football: ['MULTI-VIEW / REPLAY REVIEW', 'One moment. More angles.', 'Concept: two synchronized football views highlight possible contact, with a shared playback timeline.'],
@@ -54,9 +55,30 @@ function Blocking() {
     <text x="45" y="256" fill="#907b61" fontSize="10" letterSpacing="1">ILLUSTRATIVE STRATEGY · NOT AN EVALUATION TRACE</text>
   </svg>;
 }
+function Context() {
+  const colors = ['#767bd4', '#409d97', '#cf895d'];
+  return <svg viewBox="0 0 600 270" aria-hidden="true">
+    <text x="30" y="30" fill="#5c637d" fontSize="13" letterSpacing="2">APP-USAGE RHYTHMS</text>
+    {[65, 117, 169].map((y, row) => <g key={y}>
+      <path d={`M30 ${y+22}H350`} stroke="#d5d9e6" />
+      {Array.from({length: 16}, (_, i) => {
+        const height = 8 + ((i * 13 + row * 19) % 33);
+        return <rect key={i} x={34+i*20} y={y+22-height} width="12" height={height} rx="4" fill={colors[row]} opacity={i%3===0 ? '.45' : '.85'} />;
+      })}
+    </g>)}
+    <text x="30" y="220" fill="#697087" fontSize="12">Morning</text><text x="283" y="220" fill="#697087" fontSize="12">Late night</text>
+    <path d="M386 40v172" stroke="#c8cedd" />
+    {[[460, 75], [514, 139], [445, 178]].map(([x,y], i) => <g key={x}>
+      <circle cx={x} cy={y} r="36" fill={colors[i]} opacity=".12" />
+      {[[0,0],[-14,-8],[13,-12],[8,14],[-12,12]].map(([dx,dy], j) => <circle key={j} cx={x+dx} cy={y+dy} r={j===0?6:4} fill={colors[i]} />)}
+    </g>)}
+    <text x="410" y="234" fill="#5c637d" fontSize="12">Behavioral contexts</text>
+    <text x="30" y="258" fill="#72788d" fontSize="11" letterSpacing="1">ILLUSTRATIVE PATTERNS · RECOMMENDATION PROTOTYPE</text>
+  </svg>;
+}
 export default function ProjectArt({ kind }) {
   const [label, title, description] = captions[kind];
-  const Diagram = { knowledge: Knowledge, narrative: Narrative, football: Football, blocking: Blocking }[kind];
+  const Diagram = { knowledge: Knowledge, narrative: Narrative, football: Football, blocking: Blocking, context: Context }[kind];
   return <div className={`concept-art concept-${kind}`} role="img" aria-label={description}>
     <div className="concept-label">{label}<span>CONCEPT</span></div>
     <div className="concept-title">{title}</div>

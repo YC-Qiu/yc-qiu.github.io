@@ -1,5 +1,24 @@
 export const additionalProjects = [
   {
+    category: "ai-ml", order: 8,
+    title: "Context-Aware Food Recommendation",
+    type: "Course project · Behavioral context modeling",
+    status: "Prototype", art: "context",
+    tech: "Python, Feature Engineering, Unsupervised Learning, Recommendation Systems",
+    description: [
+      "Exploring how smartphone app-usage patterns can become interpretable context signals for food recommendations.",
+      "The prototype transforms LSApp usage logs into user-day features covering duration, app diversity, time of day, switching behavior, and category mix. It compares KMeans, Gaussian Mixture Models, and agglomerative clustering using separation metrics, cluster balance, and interpretable profiles.",
+      "Preprocessing, feature extraction, model comparison, and profile exports are implemented. Recommendation-focused model selection is in progress; mapping behavioral clusters to dish-level rankings is the next step. The clusters describe usage patterns, not emotions or psychological traits.",
+    ],
+    detailHeading: "Implemented so far",
+    contributions: [
+      "Cleaned interaction logs, filtered short interactions, and validated app-category mappings before export.",
+      "Built user-day feature tables and compared clustering methods with silhouette, Davies–Bouldin, and Calinski–Harabasz scores.",
+      "Exported cluster profiles and feature summaries to support interpretation and future recommendation design.",
+    ],
+    links: [{ label: "GitHub", url: "https://github.com/YC-Qiu/context-aware-user-recommendation" }], images: [],
+  },
+  {
     category: "ai-ml", order: 6,
     title: "Abbott — AI Knowledge Assistant",
     location: "Abbott",

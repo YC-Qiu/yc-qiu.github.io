@@ -3,12 +3,14 @@ import SiteLayout from "../components/SiteLayout";
 import { experiences, researchProjects } from "../data/work";
 const workflows = {
   "Wicresoft International LTD.": {
-    src: "/assets/work/wicresoft-workflow.png",
-    alt: "ToolBox development: engineer workflows, web interfaces with jQuery and Jinja, application features with Python and React, then unit tests.",
+    src: "/assets/work/wicresoft-toolbox.svg",
+    alt: "Conceptual ToolBox workbench: a centralized web application suite for telecom engineers, with interface development, application features, and unit testing.",
+    caption: "ToolBox workbench · Concept illustration",
   },
   "Nullmax Autonomous Driving": {
-    src: "/assets/work/nullmax-workflow.png",
-    alt: "Driving data visualization: dynamic scene inputs, THREE.js 3D scenes, obstacles and trajectories, then interactive views with automatic zoom and Foxglove.",
+    src: "/assets/work/nullmax-scene.svg",
+    alt: "Conceptual driving-data viewport: a perspective road with obstacle boxes, a curved trajectory, and automatic view framing, illustrating THREE.js and Foxglove visualization work.",
+    caption: "Driving-data viewport · Concept illustration",
   },
 };
 function Timeline({ title, items }) {
@@ -31,10 +33,10 @@ function Timeline({ title, items }) {
                 ))}
               </ul>
               {workflows[item.organization] && <figure className="work-diagram">
-                <a href={workflows[item.organization].src} target="_blank" rel="noreferrer" aria-label={`Open workflow diagram: ${item.organization}`}>
+                <a href={workflows[item.organization].src} target="_blank" rel="noreferrer" aria-label={`Open concept illustration: ${item.organization}`}>
                   <ProjectImage {...workflows[item.organization]} sizes="(max-width: 760px) 90vw, 850px" />
                 </a>
-                <figcaption>Workflow overview <a href={workflows[item.organization].src} target="_blank" rel="noreferrer">View full size ↗</a></figcaption>
+                <figcaption>{workflows[item.organization].caption} <a href={workflows[item.organization].src} target="_blank" rel="noreferrer">View full size</a></figcaption>
               </figure>}
             </div>
           </article>
