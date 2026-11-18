@@ -15,6 +15,11 @@ for (const [page, name, data] of groups) {
   // Compare all other content exactly; allow only its explicitly revised copy.
   const revisedFields = ['title', 'tech', 'description', 'contributions'];
   const normalize = (entries) => entries.map((entry) => {
+    // Resume-backed description updates; preserve dates, roles, and other entries.
+    if ((name === 'experiences' && entry.organization === 'Wicresoft International LTD.') ||
+        (name === 'researchProjects' && entry.organization === 'Mechanical Impedance of Ankle — University of Michigan')) {
+      return Object.fromEntries(Object.entries(entry).filter(([key]) => key !== 'bullets'));
+    }
     if (name !== 'projects') return entry;
     // Game routing metadata was added when games moved to their own page.
     return Object.fromEntries(Object.entries(entry).filter(([key]) =>

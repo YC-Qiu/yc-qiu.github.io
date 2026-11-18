@@ -16,8 +16,9 @@ export const experiences = [
     role: "Software Engineer Intern",
     time: "2024.11 – 2025.08",
     bullets: [
-      "Build ToolBox, a centralized suite of web applications for Wicresoft Managed Telecom Services engineers.",
-      "Lead front-end development with jQuery and Jinja templates; deliver back-end features and unit tests with Python and React.",
+      "Developed a messaging backend serving approximately 3,000 employees, supporting internal chat and system notifications with persistent message storage and chat history retrieval.",
+      "Developed ToolBox, a centralized web application suite supporting engineering workflows for Wicresoft Managed Telecom Services.",
+      "Implemented web interfaces using jQuery and Jinja templates, and developed Python backend functionality and unit tests.",
     ],
   },
 ];
@@ -29,8 +30,8 @@ export const researchProjects = [
     role: "Full-time Research Assistant",
     time: "2023.07 – 2024.11",
     bullets: [
-      "Implement, maintain, and optimize a GUI communicating with a perturbation robot using Python and Arduino C.",
-      "Collect and analyze motion data with Qualisys and MATLAB to refine impedance models.",
+      "Developed and maintained a Python control interface communicating with an Arduino-based perturbation robot to support ankle impedance experiments.",
+      "Supported motion-capture data acquisition using Qualisys and performed biomechanical data analysis in MATLAB.",
     ],
   },
   {

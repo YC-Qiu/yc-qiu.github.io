@@ -1,52 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" fill="none">
-  <title>ToolBox — a shared workbench for telecom engineers</title>
-  <desc>Conceptual illustration, not a screenshot. A lavender software workbench combines web interfaces, application features and unit tests.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" fill="none">
+  <title>Wicresoft — messaging services and engineering tools</title>
+  <desc>Concept illustration, not a product screenshot. Two separate panels show messaging backend features and the ToolBox web application suite: internal chat, system notifications, persistent message storage, chat history retrieval, jQuery and Jinja interfaces, Python backend functionality, and unit tests.</desc>
   <defs>
-    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#c7c5df"/></pattern>
-    <filter id="shadow" x="-20%" y="-20%" width="150%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#40396e" flood-opacity=".12"/></filter>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#ccc7df"/></pattern>
   </defs>
-  <rect width="1200" height="680" rx="20" fill="#eeedf7"/>
-  <rect x="450" width="750" height="680" fill="url(#dots)"/>
+  <rect width="1200" height="760" rx="20" fill="#eeedf7"/>
+  <rect x="650" width="550" height="190" fill="url(#dots)"/>
   <g font-family="Arial, Helvetica, sans-serif">
-    <text x="54" y="61" fill="#65568b" font-size="17" letter-spacing="3">WICRESOFT / ENGINEERING TOOLS</text>
-    <text x="54" y="139" fill="#302a4f" font-size="56" font-weight="700">One workbench.</text>
-    <text x="54" y="201" fill="#302a4f" font-size="56" font-weight="700">Many moving parts.</text>
-    <text x="56" y="249" fill="#6d6680" font-size="22">A shared home for everyday engineering.</text>
+    <text x="48" y="52" fill="#65568b" font-size="18" letter-spacing="3">WICRESOFT / SOFTWARE ENGINEERING</text>
+    <text x="48" y="117" fill="#302a4f" font-size="46" font-weight="700">Messaging services. Everyday tools.</text>
+    <text x="50" y="158" fill="#6d6680" font-size="23">Backend functionality and interfaces for internal workflows.</text>
 
-    <g filter="url(#shadow)">
-      <rect x="438" y="288" width="706" height="280" rx="16" fill="#fff"/>
-      <path d="M454 288h674a16 16 0 0 1 16 16v36H438v-36a16 16 0 0 1 16-16" fill="#dbd7ef"/>
-      <circle cx="461" cy="314" r="5" fill="#8574b0"/><circle cx="479" cy="314" r="5" fill="#aa9dc7"/><circle cx="497" cy="314" r="5" fill="#c0b6d6"/>
-      <text x="534" y="321" fill="#514768" font-size="18" font-weight="700">ToolBox</text>
-      <text x="968" y="321" fill="#655b7d" font-size="14">SHARED WORKSPACE</text>
-      <path d="M438 340h154v228H454a16 16 0 0 1-16-16" fill="#f5f3fa"/>
-      <rect x="456" y="365" width="117" height="33" rx="6" fill="#e4dff3"/>
-      <text x="471" y="387" fill="#5d4e89" font-size="16">Applications</text>
-      <path d="M471 425h73m-73 27h56m-56 27h64" stroke="#cbc6d8" stroke-width="6" stroke-linecap="round"/>
-      <text x="620" y="383" fill="#403655" font-size="20" font-weight="700">Engineer workspace</text>
-      <g>
-        <rect x="620" y="405" width="145" height="133" rx="10" fill="#f0edf9"/>
-        <rect x="642" y="425" width="37" height="29" rx="5" stroke="#8572af" stroke-width="2"/><path d="M642 434h37m-24-9v29" stroke="#8572af" stroke-width="2"/>
-        <text x="640" y="487" fill="#51426f" font-size="19" font-weight="700">Interfaces</text>
-        <text x="640" y="514" fill="#706384" font-size="16">jQuery · Jinja</text>
-        <rect x="783" y="405" width="155" height="133" rx="10" fill="#e9f3f1"/>
-        <path d="m817 429-12 12 12 12m26-24 12 12-12 12m-10-29-7 34" stroke="#47857d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="802" y="487" fill="#376a64" font-size="19" font-weight="700">Features</text>
-        <text x="802" y="514" fill="#547d78" font-size="16">Python · React</text>
-        <rect x="956" y="405" width="160" height="133" rx="10" fill="#f9eee5"/>
-        <rect x="977" y="424" width="32" height="33" rx="5" stroke="#b47c51" stroke-width="2"/><path d="m983 440 7 7 12-15" stroke="#b47c51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="975" y="487" fill="#8d5d3d" font-size="19" font-weight="700">Unit tests</text>
-        <text x="975" y="514" fill="#967256" font-size="16">Validation</text>
-      </g>
-    </g>
+    <rect x="48" y="200" width="516" height="476" rx="18" fill="#51436f"/>
+    <text x="80" y="246" fill="#d2c5e9" font-size="17" letter-spacing="2">MESSAGING BACKEND</text>
+    <text x="80" y="292" fill="#fff" font-size="32" font-weight="700">Conversations that persist.</text>
+    <path d="M104 326h234a12 12 0 0 1 12 12v55a12 12 0 0 1-12 12H127l-25 18v-18a12 12 0 0 1-12-12v-55a12 12 0 0 1 14-12" fill="#eee8f9"/>
+    <path d="M114 351h111m-111 22h188" stroke="#aa9bc2" stroke-width="7" stroke-linecap="round"/>
+    <path d="M223 425h277a12 12 0 0 1 12 12v49a12 12 0 0 1-12 12v16l-24-16H223a12 12 0 0 1-12-12v-49a12 12 0 0 1 12-12" fill="#a4cecb"/>
+    <path d="M238 449h117m-117 22h229" stroke="#548e8d" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="474" cy="359" r="32" fill="#6c5b8b"/>
+    <path d="M462 366v-15a12 12 0 0 1 24 0v15l5 6h-34zm8 13h8" stroke="#e4d8f1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M80 545h452" stroke="#837197"/>
+    <text x="80" y="579" fill="#f2eaf9" font-size="23">Internal chat + system notifications</text>
+    <text x="80" y="612" fill="#d5c9e7" font-size="22">Persistent message storage</text>
+    <text x="80" y="645" fill="#d5c9e7" font-size="22">Chat history retrieval</text>
 
-    <rect x="54" y="340" width="318" height="188" rx="12" fill="#716093"/>
-    <path d="M80 378h31m-31 9h21" stroke="#d9cdec" stroke-width="3" stroke-linecap="round"/>
-    <text x="80" y="429" fill="#fff" font-size="26" font-weight="700">Built around the people</text>
-    <text x="80" y="461" fill="#fff" font-size="26" font-weight="700">doing the work.</text>
-    <text x="80" y="500" fill="#e3dbef" font-size="17">Managed Telecom Services</text>
-    <path d="M54 604h1090" stroke="#d4cfe4"/>
-    <text x="54" y="642" fill="#6d6580" font-size="17">CENTRALIZED WEB APPLICATIONS</text>
-    <text x="867" y="642" fill="#6d6580" font-size="16">CONCEPT / NOT A PRODUCT SCREENSHOT</text>
+    <rect x="592" y="200" width="560" height="476" rx="18" fill="#fff" stroke="#ddd6ec"/>
+    <path d="M610 200h524a18 18 0 0 1 18 18v45H592v-45a18 18 0 0 1 18-18" fill="#dcd6ee"/>
+    <circle cx="617" cy="232" r="5" fill="#9381b4"/><circle cx="635" cy="232" r="5" fill="#afa1c8"/><circle cx="653" cy="232" r="5" fill="#c2b7d6"/>
+    <text x="684" y="240" fill="#51426f" font-size="22" font-weight="700">ToolBox</text>
+    <text x="626" y="311" fill="#403655" font-size="29" font-weight="700">A shared engineering workspace.</text>
+    <text x="626" y="346" fill="#756b86" font-size="22">Managed Telecom Services</text>
+
+    <rect x="622" y="373" width="500" height="79" rx="10" fill="#f1edf9"/>
+    <rect x="643" y="393" width="42" height="36" rx="5" stroke="#8572af" stroke-width="2.5"/><path d="M643 404h42m-28-11v36" stroke="#8572af" stroke-width="2.5"/>
+    <text x="710" y="406" fill="#51426f" font-size="24" font-weight="700">Web interfaces</text>
+    <text x="710" y="435" fill="#746385" font-size="22">jQuery + Jinja templates</text>
+
+    <rect x="622" y="467" width="500" height="79" rx="10" fill="#e9f3f1"/>
+    <path d="m655 492-12 12 12 12m21-24 12 12-12 12m-13-30-6 36" stroke="#47857d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="710" y="500" fill="#376a64" font-size="24" font-weight="700">Backend functionality</text>
+    <text x="710" y="529" fill="#547d78" font-size="22">Python</text>
+
+    <rect x="622" y="561" width="500" height="79" rx="10" fill="#f9eee5"/>
+    <rect x="648" y="582" width="33" height="34" rx="5" stroke="#b47c51" stroke-width="2.5"/><path d="m653 599 7 7 15-18" stroke="#b47c51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="710" y="594" fill="#8d5d3d" font-size="24" font-weight="700">Unit tests</text>
+    <text x="710" y="623" fill="#967256" font-size="22">Feature validation</text>
+
+    <text x="48" y="721" fill="#6d6580" font-size="17" letter-spacing="1">INTERNAL COMMUNICATION + ENGINEERING WORKFLOWS</text>
+    <text x="1152" y="721" text-anchor="end" fill="#6d6580" font-size="17">CONCEPT ILLUSTRATION</text>
   </g>
 </svg>

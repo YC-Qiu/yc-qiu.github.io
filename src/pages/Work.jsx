@@ -4,8 +4,8 @@ import { experiences, researchProjects } from "../data/work";
 const workflows = {
   "Wicresoft International LTD.": {
     src: "/assets/work/wicresoft-toolbox.svg",
-    alt: "Conceptual ToolBox workbench: a centralized web application suite for telecom engineers, with interface development, application features, and unit testing.",
-    caption: "ToolBox workbench · Concept illustration",
+    alt: "Concept illustration of messaging backend features and the ToolBox suite: internal chat, system notifications, persistent storage, chat history, jQuery and Jinja interfaces, Python backend functionality, and unit tests.",
+    caption: "Messaging services + ToolBox · Concept illustration",
   },
   "Nullmax Autonomous Driving": {
     src: "/assets/work/nullmax-scene.svg",
