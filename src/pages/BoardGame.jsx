@@ -67,7 +67,7 @@ export default function BoardGame() {
         <div className="project-grid">
           {gameProjects.map(project => (
             <ProjectCard key={`${project.title}-${selected === projectSlug(project.title)}`} project={project}
-              categoryLabel={project.category === "coursework" ? "Coursework" : "Game project"}
+              categoryLabel="Game project"
               initialExpanded={selected === projectSlug(project.title)} />
           ))}
         </div>

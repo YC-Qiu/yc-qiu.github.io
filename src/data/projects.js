@@ -2,7 +2,7 @@ import { additionalProjects } from "./additionalProjects.js";
 
 export const projects = [
   {
-    category: "coursework",
+    category: "featured-game",
     isGame: true,
     order: 3,
     title: "The Legend of Zelda – Unity Remastered",
@@ -35,7 +35,7 @@ export const projects = [
     images: [],
   },
   {
-    category: "coursework",
+    category: "featured-game",
     isGame: true,
     order: 2,
     title: "Computer Lab Simulator – VR Experience",
@@ -90,7 +90,7 @@ export const projects = [
     ],
   },
   {
-    category: "coursework",
+    category: "featured-game",
     isGame: true,
     order: 1,
     title: "Ann Arbor Go! – AR Game",

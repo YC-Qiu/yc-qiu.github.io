@@ -12,11 +12,10 @@ const filters = [
   { key: "all", label: "All projects" },
   { key: "ai-ml", label: "AI & machine learning" },
   { key: "featured-game", label: "Games" },
-  { key: "coursework", label: "Coursework" },
 ];
 export default function Projects() {
   const { language, t } = useLocale();
-  const filterLabels = { all: "全部项目", "ai-ml": "AI 与机器学习", "featured-game": "游戏", coursework: "课程项目" };
+  const filterLabels = { all: "全部项目", "ai-ml": "AI 与机器学习", "featured-game": "游戏" };
   const [active, setActive] = useState("all");
   const [showFeatured, setShowFeatured] = useState(false);
   const featured = localizeProject(projects.find(project => project.art === "narrative"), language);

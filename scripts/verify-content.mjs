@@ -21,6 +21,8 @@ for (const [page, name, data] of groups) {
       return Object.fromEntries(Object.entries(entry).filter(([key]) => key !== 'bullets'));
     }
     if (name !== 'projects') return entry;
+    // Owner reclassified the three coursework games under Games.
+    if (entry.category === 'coursework') entry = { ...entry, category: 'featured-game' };
     // Game routing metadata was added when games moved to their own page.
     return Object.fromEntries(Object.entries(entry).filter(([key]) =>
       key !== 'isGame' && !(entry.category === 'ai-ml' && entry.order === 2 && revisedFields.includes(key))
@@ -38,7 +40,7 @@ assert.equal(projects.length,15);
 assert.ok(projects.some(p => p.art === 'context' && p.links.some(link => link.url === 'https://github.com/YC-Qiu/context-aware-user-recommendation')));
 for (const title of ['Abbott — AI Knowledge Assistant', 'Narrative Agent for Interactive Fiction', 'Multi-View Football Foul Detection', 'Taking a Detour to Win: Strategic Blocking in LLM Agents']) assert.ok(projects.some(p => p.title === title));
 assert.equal(projects.find(p => p.category === 'ai-ml' && p.order === 2).title, 'Cross-Domain Sentiment Analysis without Fine-Tuning');
-assert.deepEqual(['ai-ml','featured-game','coursework'].map(category=>projects.filter(p=>p.category===category).length),[8,4,3]);
+assert.deepEqual(['ai-ml','featured-game','coursework'].map(category=>projects.filter(p=>p.category===category).length),[8,7,0]);
 const built = readdirSync('dist/assets');
 for(const page of ['Projects','Education','Work','BoardGame']) assert.ok(built.some(name=>name.startsWith(page+'-')&&name.endsWith('.js')));
 assert.ok(!readFileSync('dist/index.html','utf8').includes('/src/assets'));
